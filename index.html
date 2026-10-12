@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frame by Frame Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a film-slate page. Condensed title card, letterboxed showreel, a contact-sheet grid of stills, then a shot list of films. */
+:root {
+  --bg: #121110;
+  --surface: #1a1917;
+  --line: #2f2c28;
+  --fg: #ece6dc;
+  --muted: #9b9488;
+  --accent: #e0a64e;   /* tungsten 3200K */
+  --rec: #d8473b;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --gutter: clamp(16px, 4vw, 56px);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  margin: 0; padding-inline: var(--gutter); padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1320px; margin-inline: auto; }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+
+/* Header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+.brand { font-family: var(--display); font-stretch: 75%; font-weight: 800; font-size: 18px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; }
+.nav { display: flex; gap: clamp(14px, 2.4vw, 32px); flex-wrap: wrap; }
+.nav a { text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.nav a:hover { color: var(--fg); }
+.rec { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); animation: blink 1.2s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+
+/* Hero */
+.hero { padding-block: clamp(36px, 7vw, 88px) 28px; display: grid; gap: 28px; }
+.slate { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.slate span b { color: var(--fg); font-weight: 500; }
+.name {
+  font-stretch: 62%; font-weight: 800; text-transform: uppercase;
+  font-size: clamp(64px, 15.5vw, 236px); line-height: .82; letter-spacing: -.01em;
+}
+.name em { font-style: italic; font-weight: 300; color: var(--accent); }
+.hero-foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; }
+.lede { max-width: 56ch; font-size: clamp(17px, 1.6vw, 20px); color: var(--fg); margin: 0; }
+.cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: background .2s, color .2s; }
+.cta:hover { background: var(--accent); color: var(--bg); }
+
+/* Showreel */
+.reel { position: relative; aspect-ratio: 2.39 / 1; max-width: 100%; background: #000; overflow: hidden; border: 1px solid var(--line); }
+.reel .poster { position: absolute; inset: 0; background:
+  radial-gradient(60% 90% at 70% 40%, #5a3d22 0%, transparent 60%),
+  radial-gradient(50% 80% at 20% 70%, #1f2c33 0%, transparent 65%),
+  linear-gradient(180deg, #17130f, #0b0a09);
+  background-size: cover; background-position: center; transform: scale(1.02); transition: transform 1.2s ease; }
+.reel:hover .poster { transform: scale(1.06); }
+.reel .grain, .ph::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.reel .hud { position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr auto; padding: clamp(12px, 2vw, 22px); pointer-events: none; }
+.hud-row { display: flex; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: clamp(10px, 1.1vw, 12px); letter-spacing: .08em; color: rgba(236,230,220,.82); font-variant-numeric: tabular-nums; text-transform: uppercase; }
+.corner { position: absolute; width: 22px; height: 22px; border-color: rgba(236,230,220,.6); border-style: solid; }
+.c1 { top: 10px; left: 10px; border-width: 1px 0 0 1px; } .c2 { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+.c3 { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; } .c4 { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+.play { position: absolute; inset: 0; margin: auto; width: clamp(64px, 9vw, 104px); height: clamp(64px, 9vw, 104px); border-radius: 50%;
+  border: 1px solid rgba(236,230,220,.7); background: rgba(18,17,16,.35); backdrop-filter: blur(4px); color: var(--fg); cursor: pointer; display: grid; place-items: center; transition: transform .25s, background .25s, border-color .25s; }
+.play:hover { transform: scale(1.06); background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.play svg { width: 30%; height: 30%; margin-left: 6%; }
+.reel iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.reel-caption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; }
+.reel-caption a { color: var(--accent); text-decoration: none; }
+
+/* Sections */
+section { padding-block: clamp(64px, 9vw, 120px) 0; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 16px 32px; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 28px; }
+.sec-head h2 { font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(44px, 7vw, 96px); line-height: .9; }
+.sec-head p { margin: 0; max-width: 42ch; color: var(--muted); }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
+.chip:hover { color: var(--fg); border-color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip sup { font-size: 9px; margin-left: 4px; }
+
+/* Contact sheet grid */
+.sheet { columns: 3 280px; column-gap: 18px; }
+.still { break-inside: avoid; margin: 0 0 22px; cursor: zoom-in; }
+.still[hidden] { display: none !important; }
+.frame { position: relative; overflow: hidden; background: var(--surface); }
+.frame img { display: block; width: 100%; height: auto; transition: transform .8s ease; }
+.ph { position: relative; width: 100%; max-width: 100%; }
+.ph .tag { position: absolute; left: 12px; bottom: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(236,230,220,.55); }
+.still:hover .frame > * { transform: scale(1.03); }
+.ph { transition: transform .8s ease; }
+.still figcaption { display: flex; justify-content: space-between; gap: 12px; padding-top: 9px; }
+.still figcaption .t { font-size: 14px; color: var(--fg); }
+.still figcaption .x { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Films */
+.films { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.film { display: grid; grid-template-columns: 56px minmax(0, 2.2fr) minmax(0, 1.4fr) minmax(0, 1fr) 80px 40px; gap: 16px; align-items: center; padding-block: 22px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background .2s, padding .3s; }
+a.film:hover { background: var(--surface); padding-inline: 12px; }
+.film h3 { font-stretch: 80%; font-weight: 700; font-size: clamp(22px, 2.6vw, 34px); line-height: 1.05; text-transform: uppercase; }
+.film .arrow { color: var(--accent); font-size: 22px; text-align: right; }
+.film.pending { opacity: .55; }
+.film .num, .film .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.svc { padding: 28px 24px 32px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.svc + .svc { padding-left: 24px; border-left: 1px solid var(--line); }
+.svc h3 { font-stretch: 75%; font-weight: 800; text-transform: uppercase; font-size: 30px; margin: 10px 0 12px; }
+.svc p { color: var(--muted); margin: 0 0 16px; }
+.svc ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.svc li { display: flex; gap: 10px; font-size: 15px; }
+.svc li::before { content: "+"; color: var(--accent); font-family: var(--mono); }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.portrait { aspect-ratio: 4 / 5; max-width: 100%; }
+.about-text p { font-size: clamp(18px, 1.7vw, 22px); line-height: 1.55; margin: 0 0 18px; max-width: 60ch; }
+.about-text p.small { font-size: 16px; color: var(--muted); }
+.kit { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; margin-top: 30px; border-top: 1px solid var(--line); }
+.kit div { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.kit dt { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kit dd { margin: 4px 0 0; font-size: 15px; }
+
+/* Clients */
+.clients { display: flex; flex-wrap: wrap; gap: 14px 44px; padding-block: 26px; border-block: 1px solid var(--line); }
+.clients span { font-family: var(--display); font-stretch: 70%; font-weight: 700; font-size: clamp(22px, 2.6vw, 32px); text-transform: uppercase; color: var(--muted); }
+
+/* Contact */
+.contact { padding-bottom: 40px; }
+.big-cta { font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(56px, 12vw, 180px); line-height: .85; margin-bottom: 36px; }
+.big-cta em { font-style: italic; font-weight: 300; color: var(--accent); }
+.channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.channel { padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); display: grid; gap: 6px; min-width: 0; }
+.channel .val { font-size: clamp(18px, 1.8vw, 22px); user-select: all; overflow-wrap: anywhere; }
+.copy { justify-self: start; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; background: none; border: 0; padding: 4px 0; color: var(--accent); cursor: pointer; }
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-block: 28px 36px; border-top: 1px solid var(--line); margin-top: 64px; }
+
+/* Lightbox / video modal */
+dialog { border: 0; padding: 0; background: transparent; color: var(--fg); max-width: 100vw; max-height: 100vh; width: 100%; height: 100%; }
+dialog::backdrop { background: rgba(8,8,7,.94); }
+.lb { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding: 16px var(--gutter); gap: 14px; }
+.lb-top, .lb-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.lb-stage { display: grid; place-items: center; min-height: 0; }
+.lb-stage > * { max-width: 100%; max-height: 100%; }
+.lb-stage img { object-fit: contain; }
+.lb-stage .ph { width: min(100%, 900px); }
+.icon-btn { background: none; border: 1px solid var(--line); color: var(--fg); font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 9px 14px; cursor: pointer; }
+.icon-btn:hover { border-color: var(--fg); }
+.video-stage { width: min(100%, 1280px); aspect-ratio: 16 / 9; position: relative; background: #000; }
+.video-stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+@media (max-width: 860px) {
+  .nav { display: none; }
+  .hero-foot { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; }
+  .film { grid-template-columns: 40px minmax(0, 1fr) 28px; row-gap: 4px; }
+  .film .meta { grid-column: 2; }
+  .film .meta.dur { display: none; }
+  .film .arrow { grid-column: 3; grid-row: 1; }
+  .svc + .svc { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 520px) {
+  .reel .hud .hud-row:first-child span:nth-child(2) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" data-bind="name">Your Name</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#work">Stills</a><a href="#films">Films</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <span class="rec" aria-hidden="true"><i></i><span id="tc">00:00:00:00</span></span>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div class="slate mono">
+      <span>Role <b>Photographer &amp; Videographer</b></span>
+      <span>Based in <b data-bind="city">Cairo, EG</b></span>
+      <span>Bookings <b>Open for 2026–27</b></span>
+    </div>
+    <h1 class="name"><span data-bind="first">Your</span><br><em data-bind="last">Name</em></h1>
+    <div class="hero-foot">
+      <p class="lede" data-bind="tagline">Stills and moving pictures for weddings, brands and people with a story to tell. One eye behind the camera, from the first frame to the final grade.</p>
+      <a class="cta" href="#contact">Book a shoot →</a>
+    </div>
+
+    <div class="reel" id="reel">
+      <div class="poster" id="reelPoster"></div>
+      <div class="grain"></div>
+      <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+      <div class="hud" aria-hidden="true">
+        <div class="hud-row"><span>Showreel 2026</span><span>4K · 23.976 fps · 2.39:1</span></div>
+        <div></div>
+        <div class="hud-row"><span id="tc2">TC 00:00:00:00</span><span>A-Cam</span></div>
+      </div>
+      <button class="play" id="playReel" aria-label="Play showreel">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg>
+      </button>
+    </div>
+    <div class="reel-caption mono">
+      <span>Showreel — selected work, 2024–2026</span>
+      <a id="reelLink" href="https://vimeo.com/1235111402" target="_blank" rel="noopener">Watch on Vimeo ↗</a>
+    </div>
+  </div>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="sec-head">
+      <h2 id="work-h">Stills</h2>
+      <p>A contact sheet of recent frames. Tap any photo to view it full size.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter photographs"></div>
+    <div class="sheet" id="sheet"></div>
+  </section>
+
+  <section id="films" aria-labelledby="films-h">
+    <div class="sec-head">
+      <h2 id="films-h">Films</h2>
+      <p>Wedding films, brand spots and short documentaries. Shot, directed and edited in-house.</p>
+    </div>
+    <ol class="films" id="filmList"></ol>
+  </section>
+
+  <section id="services" aria-labelledby="svc-h">
+    <div class="sec-head">
+      <h2 id="svc-h">Services</h2>
+      <p>Book one, or combine photo and video in one booking with a single crew.</p>
+    </div>
+    <div class="services">
+      <div class="svc">
+        <span class="mono">Stills</span>
+        <h3>Photography</h3>
+        <p>Weddings, portraits, products and events.</p>
+        <ul><li>Pre-shoot moodboard and shot list</li><li>Hand-edited, colour-graded gallery</li><li>Online delivery in 7–14 days</li><li>Print-ready high-res files</li></ul>
+      </div>
+      <div class="svc">
+        <span class="mono">Motion</span>
+        <h3>Videography</h3>
+        <p>Wedding films, commercials, reels and documentaries.</p>
+        <ul><li>4K capture, cinema lenses, gimbal &amp; drone</li><li>Recorded audio and licensed music</li><li>Highlight film plus full-length edit</li><li>Vertical cuts for Reels &amp; TikTok</li></ul>
+      </div>
+      <div class="svc">
+        <span class="mono">Post</span>
+        <h3>Edit &amp; Grade</h3>
+        <p>Already have footage? I'll finish it.</p>
+        <ul><li>Editing and story structure</li><li>Colour grading in DaVinci Resolve</li><li>Sound design and mix</li><li>Delivery in every format you need</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="sec-head">
+      <h2 id="about-h">About</h2>
+      <p class="mono">Behind the lens</p>
+    </div>
+    <div class="about">
+      <div class="ph portrait" id="portrait"></div>
+      <div class="about-text">
+        <p data-bind="bio">I'm a photographer and filmmaker who works quietly and pays attention. I like natural light, real moments, and pictures that still feel true ten years later.</p>
+        <p class="small">Over the last few years I've shot weddings, campaigns and short films across Egypt and the Gulf. I handle every project myself, from planning to the final colour grade, so what you see on set is what you get in the edit.</p>
+        <dl class="kit">
+          <div><dt>Bodies</dt><dd>Sony A7S III · A7 IV</dd></div>
+          <div><dt>Glass</dt><dd>24–70 f/2.8 · 35 · 85 f/1.4</dd></div>
+          <div><dt>Motion</dt><dd>DJI RS 3 · Mavic 3</dd></div>
+          <div><dt>Post</dt><dd>Lightroom · Premiere · Resolve</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="clients-h">
+    <div class="sec-head">
+      <h2 id="clients-h">Worked with</h2>
+      <p>Replace these with real client or brand names.</p>
+    </div>
+    <div class="clients"><span>Brand One</span><span>Hotel Two</span><span>Studio Three</span><span>Agency Four</span><span>Label Five</span></div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <h2 class="big-cta" id="contact-h">Let's make<br><em>something.</em></h2>
+    <div class="channels">
+      <div class="channel"><span class="mono">Email</span><span class="val" data-bind="email">hello@yourname.com</span><button class="copy" type="button">Copy</button></div>
+      <div class="channel"><span class="mono">WhatsApp</span><span class="val" data-bind="phone">+20 100 000 0000</span><button class="copy" type="button">Copy</button></div>
+      <div class="channel"><span class="mono">Instagram</span><span class="val"><a data-bind="instagram" href="https://instagram.com/" target="_blank" rel="noopener">@yourname</a></span><button class="copy" type="button">Copy</button></div>
+    </div>
+    <footer class="mono">
+      <span>© 2026 <span data-bind="name">Your Name</span></span>
+      <span>Photography · Videography · Post</span>
+    </footer>
+  </section>
+</main>
+
+<dialog id="lightbox" aria-label="Photo viewer">
+  <div class="lb">
+    <div class="lb-top"><span class="mono" id="lbCount"></span><button class="icon-btn" data-close type="button">Close ✕</button></div>
+    <div class="lb-stage" id="lbStage"></div>
+    <div class="lb-bottom">
+      <button class="icon-btn" id="lbPrev" type="button">← Prev</button>
+      <span class="mono" id="lbCap"></span>
+      <button class="icon-btn" id="lbNext" type="button">Next →</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="videoBox" aria-label="Video player">
+  <div class="lb">
+    <div class="lb-top"><span class="mono" id="vbTitle"></span><button class="icon-btn" data-close type="button">Close ✕</button></div>
+    <div class="lb-stage"><div class="video-stage" id="vbStage"></div></div>
+    <div class="lb-bottom"><span></span><a class="mono" id="vbLink" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">Open on Vimeo ↗</a></div>
+  </div>
+</dialog>
+
+<script>
+/* ================================================================
+   EDIT HERE: everything about the client lives in this block.
+   ================================================================ */
+const CLIENT = {
+  name: "Your Name", first: "Your", last: "Name",
+  city: "Cairo, EG",
+  email: "hello@yourname.com",
+  phone: "+20 100 000 0000",
+  instagram: "@momenzizo.visuals",
+  showreelVimeoId: "1235111402",
+};
+
+// Photos: put the image path or URL in `src`. Empty src shows a placeholder frame.
+const PHOTOS = [
+  { src: "", cat: "Weddings",   title: "First look",          exif: "35mm  f/1.8  1/500", ratio: "4/5", hue: 28 },
+  { src: "", cat: "Portraits",  title: "Window light",        exif: "85mm  f/1.4  1/250", ratio: "4/5", hue: 210 },
+  { src: "", cat: "Commercial", title: "Perfume campaign",    exif: "90mm  f/8  1/160",   ratio: "1/1", hue: 340 },
+  { src: "", cat: "Events",     title: "Main stage",          exif: "70mm  f/2.8  1/320", ratio: "3/2", hue: 260 },
+  { src: "", cat: "Weddings",   title: "The vows",            exif: "50mm  f/2  1/400",   ratio: "3/2", hue: 38 },
+  { src: "", cat: "Portraits",  title: "Studio, grey seamless", exif: "85mm  f/5.6  1/200", ratio: "2/3", hue: 190 },
+  { src: "", cat: "Commercial", title: "Coffee, overhead",    exif: "50mm  f/11  1/125",  ratio: "4/5", hue: 22 },
+  { src: "", cat: "Weddings",   title: "Golden hour walk",    exif: "35mm  f/1.4  1/1000",ratio: "2/3", hue: 34 },
+  { src: "", cat: "Events",     title: "Gala dinner",         exif: "24mm  f/2.8  1/60",  ratio: "4/5", hue: 300 },
+  { src: "", cat: "Portraits",  title: "Desert, late light",  exif: "135mm  f/2  1/800",  ratio: "3/2", hue: 18 },
+  { src: "", cat: "Commercial", title: "Watch detail",        exif: "100mm  f/4  1/200",  ratio: "1/1", hue: 200 },
+  { src: "", cat: "Weddings",   title: "First dance",         exif: "28mm  f/1.8  1/125", ratio: "4/5", hue: 12 },
+];
+
+// Films: add a Vimeo id to make a row playable. Rows without one show as "Add video".
+const FILMS = [
+  { title: "Showreel 2026", type: "Reel", role: "Director · DP · Editor", year: "2026", dur: "01:42", vimeo: "1235111402" },
+  { title: "A Wedding in Alexandria", type: "Wedding film", role: "DP · Editor", year: "2025", dur: "04:30", vimeo: "" },
+  { title: "Brand spot — sample", type: "Commercial", role: "Director · DP", year: "2025", dur: "00:30", vimeo: "" },
+  { title: "Behind the craft", type: "Short documentary", role: "Director · Editor", year: "2024", dur: "08:12", vimeo: "" },
+];
+
+/* Set to false where external players are blocked (e.g. a sandboxed preview); videos then open on Vimeo. */
+const EMBED_VIDEO = true;
+/* ================================================================ */
+
+const $ = (s, r = document) => r.querySelector(s);
+const vimeoUrl = id => `https://vimeo.com/${id}`;
+const vimeoPlayer = id => `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`;
+
+// Bind client details
+document.querySelectorAll("[data-bind]").forEach(el => {
+  const key = el.dataset.bind;
+  if (CLIENT[key] == null) return;
+  el.textContent = CLIENT[key];
+  if (key === "instagram") el.href = "https://instagram.com/" + CLIENT.instagram.replace(/^@/, "");
+});
+$("#reelLink").href = vimeoUrl(CLIENT.showreelVimeoId);
+if (EMBED_VIDEO) $("#reelPoster").style.backgroundImage = `url(https://vumbnail.com/${CLIENT.showreelVimeoId}_large.jpg), ` + getComputedStyle($("#reelPoster")).backgroundImage;
+
+// Placeholder frames: a graded, grainy gradient so the layout reads like a real contact sheet.
+function placeholder(p, label) {
+  const d = document.createElement("div");
+  d.className = "ph";
+  d.style.aspectRatio = p.ratio || "4/5";
+  const h = p.hue ?? 30;
+  d.style.background = `radial-gradient(70% 60% at ${30 + (h % 40)}% ${35 + (h % 30)}%, hsl(${h} 38% 34%) 0%, transparent 70%),
+    radial-gradient(60% 70% at 80% 85%, hsl(${(h + 180) % 360} 22% 18%) 0%, transparent 70%),
+    linear-gradient(160deg, hsl(${h} 18% 14%), hsl(${h} 10% 7%))`;
+  const t = document.createElement("span");
+  t.className = "tag"; t.textContent = label;
+  d.append(t);
+  return d;
+}
+function media(p, i) {
+  if (p.src) {
+    const img = new Image();
+    img.src = p.src; img.alt = `${p.title} — ${p.cat}`; img.loading = "lazy";
+    return img;
+  }
+  return placeholder(p, `Frame ${String(i + 1).padStart(3, "0")} · add photo`);
+}
+
+// Filters + contact sheet
+const cats = ["All", ...new Set(PHOTOS.map(p => p.cat))];
+let active = "All";
+const filters = $("#filters"), sheet = $("#sheet");
+cats.forEach(c => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button";
+  b.setAttribute("aria-pressed", c === active);
+  const n = c === "All" ? PHOTOS.length : PHOTOS.filter(p => p.cat === c).length;
+  b.innerHTML = `${c}<sup>${n}</sup>`;
+  b.onclick = () => {
+    active = c;
+    filters.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+    sheet.querySelectorAll(".still").forEach(f => f.hidden = !(c === "All" || f.dataset.cat === c));
+  };
+  filters.append(b);
+});
+PHOTOS.forEach((p, i) => {
+  const f = document.createElement("figure");
+  f.className = "still"; f.dataset.cat = p.cat; f.tabIndex = 0;
+  f.setAttribute("role", "button"); f.setAttribute("aria-label", `View ${p.title}`);
+  const fr = document.createElement("div"); fr.className = "frame"; fr.append(media(p, i));
+  f.append(fr);
+  const cap = document.createElement("figcaption");
+  cap.innerHTML = `<span class="t"></span><span class="x"></span>`;
+  cap.querySelector(".t").textContent = p.title;
+  cap.querySelector(".x").textContent = `${p.cat} · ${p.exif}`;
+  f.append(cap);
+  const open = () => openLightbox(i);
+  f.onclick = open;
+  f.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } };
+  sheet.append(f);
+});
+$("#portrait").replaceWith(Object.assign(placeholder({ ratio: "4/5", hue: 26 }, "Portrait of the photographer"), { className: "ph portrait" }));
+
+// Lightbox
+const lb = $("#lightbox");
+let cur = 0;
+const visible = () => PHOTOS.map((p, i) => i).filter(i => active === "All" || PHOTOS[i].cat === active);
+function showLb() {
+  const p = PHOTOS[cur], list = visible();
+  const stage = $("#lbStage"); stage.replaceChildren(media(p, cur));
+  $("#lbCap").textContent = `${p.title} · ${p.cat} · ${p.exif}`;
+  $("#lbCount").textContent = `${list.indexOf(cur) + 1} / ${list.length}`;
+}
+function openLightbox(i) { cur = i; showLb(); lb.showModal(); }
+function step(d) { const l = visible(); cur = l[(l.indexOf(cur) + d + l.length) % l.length]; showLb(); }
+$("#lbPrev").onclick = () => step(-1);
+$("#lbNext").onclick = () => step(1);
+lb.addEventListener("keydown", e => { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); });
+
+// Video
+const vb = $("#videoBox");
+function playVideo(id, title) {
+  if (!EMBED_VIDEO) return false;
+  $("#vbTitle").textContent = title;
+  $("#vbLink").href = vimeoUrl(id);
+  const fr = document.createElement("iframe");
+  fr.src = vimeoPlayer(id); fr.allow = "autoplay; fullscreen; picture-in-picture"; fr.allowFullscreen = true; fr.title = title;
+  $("#vbStage").replaceChildren(fr);
+  vb.showModal();
+  return true;
+}
+vb.addEventListener("close", () => $("#vbStage").replaceChildren());
+document.querySelectorAll("dialog [data-close]").forEach(b => b.onclick = () => b.closest("dialog").close());
+document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target.classList.contains("lb") || e.target.classList.contains("lb-stage")) d.close(); }));
+
+$("#playReel").onclick = () => {
+  if (EMBED_VIDEO) {
+    const fr = document.createElement("iframe");
+    fr.src = vimeoPlayer(CLIENT.showreelVimeoId); fr.allow = "autoplay; fullscreen; picture-in-picture"; fr.allowFullscreen = true; fr.title = "Showreel";
+    $("#reel").append(fr);
+  } else {
+    $("#reelLink").click();
+  }
+};
+
+// Film list
+const list = $("#filmList");
+FILMS.forEach((f, i) => {
+  const li = document.createElement("li");
+  const row = document.createElement(f.vimeo ? "a" : "div");
+  row.className = "film" + (f.vimeo ? "" : " pending");
+  if (f.vimeo) {
+    row.href = vimeoUrl(f.vimeo); row.target = "_blank"; row.rel = "noopener";
+    row.onclick = e => { if (playVideo(f.vimeo, f.title)) e.preventDefault(); };
+  }
+  row.innerHTML = `<span class="num">${String(i + 1).padStart(2, "0")}</span><h3></h3><span class="meta role"></span><span class="meta type"></span><span class="meta dur"></span><span class="arrow">${f.vimeo ? "▶" : ""}</span>`;
+  row.querySelector("h3").textContent = f.title;
+  row.querySelector(".role").textContent = f.role;
+  row.querySelector(".type").textContent = f.vimeo ? `${f.type} · ${f.year}` : `${f.type} · add video`;
+  row.querySelector(".dur").textContent = f.dur;
+  li.append(row); list.append(li);
+});
+
+// Copy buttons
+document.querySelectorAll(".copy").forEach(b => b.onclick = async () => {
+  const val = b.parentElement.querySelector(".val").textContent.trim();
+  try { await navigator.clipboard.writeText(val); b.textContent = "Copied"; }
+  catch { const r = document.createRange(); r.selectNodeContents(b.parentElement.querySelector(".val")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; }
+  setTimeout(() => b.textContent = "Copy", 1600);
+});
+
+// Running timecode at 24 fps
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const t0 = performance.now(), pad = n => String(n).padStart(2, "0");
+function tick(now) {
+  const f = Math.floor((now - t0) / 1000 * 24);
+  const tc = `${pad(Math.floor(f / 86400) % 24)}:${pad(Math.floor(f / 1440) % 60)}:${pad(Math.floor(f / 24) % 60)}:${pad(f % 24)}`;
+  $("#tc").textContent = tc; $("#tc2").textContent = "TC " + tc;
+  if (!reduce) requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>
