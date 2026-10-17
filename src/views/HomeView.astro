@@ -39,7 +39,7 @@ const [first, last] = lang === 'ar' ? ['مؤمن', 'زيزو'] : ['Momen', 'Zizo
       </div>
     </div>
     <div data-hero-reel>
-      <a class="reel" href={watchUrl(showreel.id)} target="_blank" rel="noopener" data-video={showreel.id} data-title={t.reelLabel} data-cursor={t.watch} aria-label={t.reelPlay}>
+      <a class="reel" href={watchUrl(showreel.id)} target="_blank" rel="noopener" data-video={showreel.id} data-inline data-title={t.reelLabel} data-cursor={t.watch} aria-label={t.reelPlay}>
         <img src={poster(showreel.id, 1600)} alt={t.reelLabel} fetchpriority="high" decoding="async" data-drive-video={showreel.id} />
         <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
         <span class="hud" aria-hidden="true">

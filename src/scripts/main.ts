@@ -139,6 +139,20 @@ document.addEventListener('click', (e) => {
   if (!a || e.metaKey || e.ctrlKey) return;
   e.preventDefault();
   const id = a.dataset.video!;
+  // The hero reel plays in place instead of opening the full-screen player.
+  if (a.hasAttribute('data-inline')) {
+    if (a.classList.contains('playing')) return;
+    const fr = document.createElement('iframe');
+    fr.src = `https://drive.google.com/file/d/${id}/preview`;
+    fr.allow = 'autoplay; fullscreen; picture-in-picture';
+    fr.allowFullscreen = true;
+    fr.title = a.dataset.title ?? 'Showreel';
+    a.classList.add('playing');
+    a.removeAttribute('data-cursor');
+    $('.cursor')?.classList.remove('on');
+    a.append(fr);
+    return;
+  }
   $('[data-vp-title]', vp)!.textContent = a.dataset.title ?? '';
   $<HTMLAnchorElement>('[data-vp-link]', vp)!.href = a.href;
   const fr = document.createElement('iframe');
