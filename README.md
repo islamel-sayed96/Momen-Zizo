@@ -11,17 +11,19 @@
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/Momen-Zizo/
-npm run build    # يطلع الموقع في dist/
+npm run dev      # http://localhost:4321/
+npm run build    # يطلع الموقع الجاهز في dist/
 ```
 
-## النشر على GitHub Pages
+## النشر على Hostinger
 
-مرة واحدة بس: **Settings › Pages › Source** اختار **GitHub Actions**.
-بعد كده أي push على `main` بينشر الموقع تلقائياً على
-`https://islamel-sayed96.github.io/Momen-Zizo/`.
+Hostinger بينسخ المستودع زي ما هو في `public_html` ومش بيعمل build، عشان كده:
 
-لو اتربط دومين خاص: غيّر `site` و`base` في `astro.config.mjs` وسطر الـ Sitemap في `public/robots.txt`.
+- الموقع الجاهز موجود في فولدر `dist/` ومرفوع على المستودع.
+- ملف `.htaccess` اللي في الروت بيوجّه كل الطلبات لـ `dist/`.
+- أي تعديل في `src/` أو `public/` بيتعمله build تلقائي من GitHub Actions، و`dist/` الجديد بيترفع لوحده.
+
+لما يبقى فيه دومين: حطه في `SITE_URL` في `astro.config.mjs`، وده بيشغّل الـ canonical والـ sitemap.
 
 ## التعديل
 

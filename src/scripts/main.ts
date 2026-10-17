@@ -60,7 +60,7 @@ const hudEl = $('[data-tc-hud]');
 const t0 = performance.now();
 const pad = (n: number) => String(n).padStart(2, '0');
 function tick(now: number) {
-  const f = Math.floor(((now - t0) / 1000) * 25);
+  const f = Math.max(0, Math.floor(((now - t0) / 1000) * 25));
   const tc = `${pad(Math.floor(f / 90000) % 24)}:${pad(Math.floor(f / 1500) % 60)}:${pad(Math.floor(f / 25) % 60)}:${pad(f % 25)}`;
   tcEls.forEach((el) => (el.textContent = tc));
   if (hudEl) hudEl.textContent = `TC ${tc}`;

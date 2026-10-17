@@ -15,7 +15,7 @@ const { lang, page, title, description, image } = Astro.props;
 const t = ui[lang];
 const other: Lang = lang === 'en' ? 'ar' : 'en';
 const pageKey = page === '404' ? '' : page;
-const origin = Astro.site!.origin;
+const origin = Astro.site ? Astro.site.origin : '';
 const canonical = origin + path(lang, pageKey);
 const ogImage = image ?? origin + asset('og.png');
 const navItems = [
@@ -62,10 +62,11 @@ const jsonLd = {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <link rel="canonical" href={canonical} />
+  {origin && <link rel="canonical" href={canonical} />}
   {page !== '404' && <link rel="alternate" hreflang="en" href={origin + path('en', pageKey)} />}
   {page !== '404' && <link rel="alternate" hreflang="ar" href={origin + path('ar', pageKey)} />}
   {page !== '404' && <link rel="alternate" hreflang="x-default" href={origin + path('en', pageKey)} />}
+  {origin && <link rel="sitemap" href={asset('sitemap-index.xml')} />}
   {page === '404' && <meta name="robots" content="noindex" />}
   <meta name="author" content={site.fullName} />
   <meta name="theme-color" content="#121110" />
@@ -74,7 +75,7 @@ const jsonLd = {
   <meta property="og:site_name" content={site.brand} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:url" content={canonical} />
+  {origin && <meta property="og:url" content={canonical} />}
   <meta property="og:image" content={ogImage} />
   <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ar_AE'} />
   <meta name="twitter:card" content="summary_large_image" />
