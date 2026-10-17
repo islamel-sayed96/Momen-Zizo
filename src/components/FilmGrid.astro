@@ -1,0 +1,20 @@
+---
+import { poster, watchUrl, type Film } from '../data/films';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; items: Film[]; featured?: boolean }
+const { lang, items, featured = false } = Astro.props;
+const t = ui[lang];
+---
+<div class={`films${featured ? ' featured' : ''}`}>
+  {items.map((f, i) => (
+    <a class="film" href={watchUrl(f.id)} target="_blank" rel="noopener" data-video={f.id} data-title={f.title} data-cursor={t.watch} data-reveal>
+      <div class="film-frame">
+        <img src={poster(f.id, featured && i === 0 ? 1600 : 960)} alt={`${f.title} — ${t.filmTypes[f.type]} video by Momen Zizo`} loading="lazy" decoding="async" data-drive-video={f.id} />
+        <span class="tag">{t.filmTypes[f.type]}</span>
+        <span class="mini-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l16 9-16 9z"/></svg></span>
+      </div>
+      <div class="film-meta"><h3>{f.title}</h3><span class="yr">{f.year}</span></div>
+    </a>
+  ))}
+</div>

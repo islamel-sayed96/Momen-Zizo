@@ -1,0 +1,19 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+import { site } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+---
+<section class="section contact wrap" id="contact" aria-labelledby="contact-h">
+  <h2 class="big-cta" id="contact-h" data-reveal>{t.contactTitle[0]}<br /><em>{t.contactTitle[1]}</em></h2>
+  <p class="contact-lede">{t.contactLede}</p>
+  <div class="channels">
+    <div class="channel"><span class="mono">{t.email}</span><a class="val" href={`mailto:${site.email}`} data-copy-src>{site.email}</a><button class="copy" type="button" data-copy={site.email} data-done={t.copied}>{t.copy}</button></div>
+    <div class="channel"><span class="mono">{t.whatsapp}</span><a class="val" href={site.whatsapp} target="_blank" rel="noopener">{site.phone}</a><button class="copy" type="button" data-copy={site.phone} data-done={t.copied}>{t.copy}</button></div>
+    <div class="channel"><span class="mono">{t.instagram}</span><a class="val" href={site.instagram} target="_blank" rel="noopener">@{site.handle}</a><button class="copy" type="button" data-copy={`@${site.handle}`} data-done={t.copied}>{t.copy}</button></div>
+  </div>
+  <div class="docs">
+    <a class="btn solid" href={site.cv} target="_blank" rel="noopener">{t.cv} <span class="arrow">→</span></a>
+    <a class="btn" href={site.portfolioPdf} target="_blank" rel="noopener">{t.portfolioPdf} <span class="arrow">→</span></a>
+  </div>
+</section>

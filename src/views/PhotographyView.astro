@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import StillsGrid from '../components/StillsGrid.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { photos } from '../data/photos';
+import { site } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+---
+<Base lang={lang} page="photography" title={t.meta.photography.title} description={t.meta.photography.description}>
+  <div class="wrap">
+    <header class="page-head">
+      <h1 class="page-title">{t.photoPageTitle}</h1>
+      <p>{t.photoPageLede}</p>
+    </header>
+    <StillsGrid lang={lang} items={photos} filters />
+    <div class="sec-foot"><a class="btn ghost" href={site.driveFolder} target="_blank" rel="noopener">{t.driveFolder} <span class="arrow">→</span></a></div>
+  </div>
+</Base>

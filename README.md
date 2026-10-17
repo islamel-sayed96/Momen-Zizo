@@ -1,22 +1,37 @@
 # Momen Zizo — Portfolio
 
-موقع بورتفوليو لمؤمن زيزو (تصوير فوتوغرافي وفيديو). صفحة واحدة: `index.html`، من غير أي build أو مكتبات.
+موقع بورتفوليو لمؤمن عبد الهادي (Momen Zizo)، مصوّر فوتوغرافي وفيديو في دبي.
+مبني بـ [Astro](https://astro.build) + [GSAP](https://gsap.com)، وبيطلع صفحات HTML جاهزة وسريعة.
 
-## تشغيله
+- إنجليزي (الأساسي) على `/`، وعربي على `/ar/`
+- الوضع الداكن هو الأساسي، ومعاه زرار للوضع الفاتح
+- الصفحات: الرئيسية · Photography · Films · About
 
-افتح `index.html` في المتصفح مباشرة، أو انشره على GitHub Pages:
-Settings › Pages › Source: `Deploy from a branch` › Branch: `main` / `(root)`.
+## التشغيل محلياً
+
+```bash
+npm install
+npm run dev      # http://localhost:4321/Momen-Zizo/
+npm run build    # يطلع الموقع في dist/
+```
+
+## النشر على GitHub Pages
+
+مرة واحدة بس: **Settings › Pages › Source** اختار **GitHub Actions**.
+بعد كده أي push على `main` بينشر الموقع تلقائياً على
+`https://islamel-sayed96.github.io/Momen-Zizo/`.
+
+لو اتربط دومين خاص: غيّر `site` و`base` في `astro.config.mjs` وسطر الـ Sitemap في `public/robots.txt`.
 
 ## التعديل
 
-كل بيانات العميل موجودة في أول الـ `<script>` في `index.html`:
+كل المحتوى في ملفات بيانات، مش جوه الصفحات:
 
-- `CLIENT`: الاسم، المدينة، الإيميل، الواتساب، الإنستجرام، ورقم فيديو الشوريل على Vimeo.
-- `PHOTOS`: الصور. حالياً بتتعرض من Google Drive بالـ id بتاعها في `drive` (لازم الملف يكون متشارك Anyone with the link). عشان تستضيف صورة في المستودع نفسه، حط مسارها في `src` (مثلاً `assets/photos/weddings-01.jpg`) وشيل `drive`.
-- `FILMS`: الأفلام. حط رقم فيديو Vimeo في `vimeo` أو id الدرايف في `drive`. Vimeo أسرع وأوضح في التشغيل.
+| الملف | فيه إيه |
+| --- | --- |
+| `src/data/site.ts` | الاسم والتواصل ولينكات السي في والبورتفوليو PDF والعملاء والفنانين والمعدات |
+| `src/data/photos.ts` | الصور (id من Google Drive + الفئة). `featured: true` تظهر في الرئيسية |
+| `src/data/films.ts` | الفيديوهات (id من Google Drive) والشوريل |
+| `src/i18n/ui.ts` | كل النصوص بالإنجليزي والعربي، وعناوين ووصف الـ SEO لكل صفحة |
 
-الصور بتترفع في فولدر `assets/photos/`.
-
-## الأقسام
-
-Showreel · Stills (جاليري بفلاتر وعرض مكبّر) · Films · Services · About · Clients · Contact
+الصور والفيديوهات بتتعرض من Google Drive مباشرة، فلازم الملفات تفضل متشاركة **Anyone with the link**.

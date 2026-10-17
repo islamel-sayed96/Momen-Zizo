@@ -1,0 +1,36 @@
+---
+import { categories, img, type Photo } from '../data/photos';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; items: Photo[]; filters?: boolean }
+const { lang, items, filters = false } = Astro.props;
+const t = ui[lang];
+const used = categories.filter((c) => items.some((p) => p.cat === c));
+const caption = (p: Photo) => p.label ?? t.cats[p.cat];
+---
+{filters && (
+  <div class="filters" role="group" aria-label={t.photoPageTitle} data-filters>
+    <button class="chip" type="button" aria-pressed="true" data-cat="all">{t.all}<sup>{items.length}</sup></button>
+    {used.map((c) => (
+      <button class="chip" type="button" aria-pressed="false" data-cat={c}>{t.cats[c]}<sup>{items.filter((p) => p.cat === c).length}</sup></button>
+    ))}
+  </div>
+)}
+<div class="sheet" data-sheet>
+  {items.map((p, i) => (
+    <figure class="still" data-cat={p.cat} data-reveal>
+      <button type="button" data-lightbox={p.id} data-caption={`${caption(p)} · ${t.cats[p.cat]}`} aria-label={`${caption(p)}, ${t.cats[p.cat]}`}>
+        <img
+          src={img(p.id, 900)}
+          srcset={`${img(p.id, 600)} 600w, ${img(p.id, 900)} 900w, ${img(p.id, 1400)} 1400w`}
+          sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+          alt={`${caption(p)} — ${t.cats[p.cat]} photography by Momen Zizo`}
+          loading={i < 3 ? 'eager' : 'lazy'}
+          decoding="async"
+          data-drive={p.id}
+        />
+      </button>
+      <figcaption><span class="t">{caption(p)}</span><span class="x">№ {String(i + 1).padStart(3, '0')}</span></figcaption>
+    </figure>
+  ))}
+</div>

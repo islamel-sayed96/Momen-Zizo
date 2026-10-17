@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://islamel-sayed96.github.io/Momen-Zizo/sitemap-index.xml

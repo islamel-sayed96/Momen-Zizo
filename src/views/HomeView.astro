@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import StillsGrid from '../components/StillsGrid.astro';
+import FilmGrid from '../components/FilmGrid.astro';
+import Contact from '../components/Contact.astro';
+import { ui, path, type Lang } from '../i18n/ui';
+import { photos, onStage, img } from '../data/photos';
+import { films, showreel, poster, watchUrl } from '../data/films';
+import { site, artists, clients, yearsActive } from '../data/site';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+const featured = photos.filter((p) => p.featured);
+const stripPhotos = photos.filter((p) => !p.featured).slice(0, 14);
+const featuredFilms = films.filter((f) => f.featured);
+const otherArtists = artists.filter((a) => !onStage.some((s) => s.artist === a));
+const brandsA = clients.slice(0, 6);
+const brandsB = clients.slice(6);
+const [first, last] = lang === 'ar' ? ['مؤمن', 'زيزو'] : ['Momen', 'Zizo'];
+---
+<Base lang={lang} page="" title={t.meta.home.title} description={t.meta.home.description}>
+  <link slot="head" rel="preload" as="image" href={poster(showreel.id, 1600)} fetchpriority="high" />
+
+  <section class="hero wrap" aria-labelledby="hero-h">
+    <div>
+      <div class="slate mono">
+        <span>{t.role}</span>
+        <span>{t.based} <b>{t.city}</b></span>
+        <span>{t.since} <b>{site.since}</b></span>
+      </div>
+      <h1 class="name" id="hero-h" data-hero-name>
+        <span class="line"><span>{first}</span></span>
+        <span class="line"><em><span>{last}</span></em></span>
+      </h1>
+      <p class="lede" data-hero-fade>{t.heroLede}</p>
+      <div class="hero-ctas" data-hero-fade>
+        <a class="btn solid" href="#contact">{t.ctaBook} <span class="arrow">→</span></a>
+        <a class="btn ghost" href={path(lang, 'photography')}>{t.ctaWork}</a>
+      </div>
+    </div>
+    <div data-hero-reel>
+      <a class="reel" href={watchUrl(showreel.id)} target="_blank" rel="noopener" data-video={showreel.id} data-title={t.reelLabel} data-cursor={t.watch} aria-label={t.reelPlay}>
+        <img src={poster(showreel.id, 1600)} alt={t.reelLabel} fetchpriority="high" decoding="async" data-drive-video={showreel.id} />
+        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+        <span class="hud" aria-hidden="true">
+          <span class="hud-row"><span>Showreel</span><span>4K · Drone</span></span>
+          <span></span>
+          <span class="hud-row"><span data-tc-hud>TC 00:00:00:00</span><span>25.11° N 55.13° E</span></span>
+        </span>
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l16 9-16 9z"/></svg></span>
+      </a>
+      <div class="reel-caption mono"><span>{t.reelLabel}</span><a href={path(lang, 'films')}>{t.seeAllFilms} <span class="arrow">→</span></a></div>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <div class="strip-track">
+      {[...stripPhotos, ...stripPhotos].map((p) => (
+        <a href={path(lang, 'photography')} tabindex="-1"><img src={img(p.id, 420)} alt="" loading="lazy" decoding="async" data-drive={p.id} /></a>
+      ))}
+    </div>
+  </div>
+
+  <section class="section wrap" aria-labelledby="stills-h">
+    <div class="sec-head"><h2 id="stills-h">{t.stillsTitle}</h2><p>{t.stillsLede}</p></div>
+    <StillsGrid lang={lang} items={featured} />
+    <div class="sec-foot"><a class="btn" href={path(lang, 'photography')}>{t.seeAllPhotos} <span class="arrow">→</span></a></div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="films-h">
+    <div class="sec-head"><h2 id="films-h">{t.filmsTitle}</h2><p>{t.filmsLede}</p></div>
+    <FilmGrid lang={lang} items={featuredFilms} featured />
+    <div class="sec-foot"><a class="btn" href={path(lang, 'films')}>{t.seeAllFilms} <span class="arrow">→</span></a></div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="stage-h">
+    <div class="sec-head"><h2 id="stage-h">{t.stageTitle}</h2><p>{t.stageLede}</p></div>
+    <div class="stage">
+      {onStage.map((s) => (
+        <figure class="stage-card" data-reveal style="margin:0">
+          <img src={img(s.id, 900)} alt={`${s.artist} live in concert, photographed by Momen Zizo`} loading="lazy" decoding="async" data-drive={s.id} />
+          <span class="mono">Live</span>
+          <h3>{s.artist}</h3>
+        </figure>
+      ))}
+    </div>
+    <div class="also"><span class="mono" style="font-size:12px">{t.alsoOnStage}</span>{otherArtists.map((a) => <span>{a}</span>)}</div>
+  </section>
+
+  <section class="section" aria-labelledby="brands-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="brands-h">{t.trustedTitle}</h2></div>
+      <div class="stats">
+        <div class="stat"><b data-count={yearsActive}>{yearsActive}+</b><span>{t.stats.years}</span></div>
+        <div class="stat"><b data-count={artists.length}>{artists.length}</b><span>{t.stats.artists}</span></div>
+        <div class="stat"><b data-count={clients.length}>{clients.length}</b><span>{t.trustedTitle}</span></div>
+        <div class="stat"><b>2</b><span>{t.stats.countries}</span></div>
+      </div>
+    </div>
+    <div class="brands" aria-label={clients.join(', ')}>
+      <div class="brands-track" aria-hidden="true">
+        {[...brandsA, ...brandsA].map((c) => (<><span>{c}</span><i></i></>))}
+      </div>
+      <div class="brands-track reverse" aria-hidden="true">
+        {[...brandsB, ...brandsB].map((c) => (<><span>{c}</span><i></i></>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="svc-h">
+    <div class="sec-head"><h2 id="svc-h">{t.servicesTitle}</h2></div>
+    <div class="services">
+      {t.services.map((s, i) => (
+        <div class="svc" data-reveal>
+          <span class="mono">0{i + 1}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+          <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Contact lang={lang} />
+</Base>

@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import Contact from '../components/Contact.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { site, gear } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+---
+<Base lang={lang} page="about" title={t.meta.about.title} description={t.meta.about.description}>
+  <div class="wrap">
+    <header class="page-head">
+      <span class="mono">{t.aboutLede}</span>
+      <h1 class="page-title">{lang === 'ar' ? 'مؤمن عبد الهادي' : site.fullName}</h1>
+    </header>
+    <div class="about">
+      <div class="portrait" data-reveal>
+        <Logo />
+        <span class="mono">{t.portraitNote}</span>
+      </div>
+      <div class="bio">
+        {t.bio.map((p) => <p>{p}</p>)}
+        <dl class="kit">
+          <div><dt>{t.kit.camera}</dt><dd>{gear.camera}</dd></div>
+          <div><dt>{t.kit.lens}</dt><dd>{gear.lens}</dd></div>
+          <div><dt>{t.kit.motion}</dt><dd>{gear.motion}</dd></div>
+          <div><dt>{t.kit.software}</dt><dd>{gear.software}</dd></div>
+          <div><dt>{t.languagesTitle}</dt><dd>{t.languages}</dd></div>
+          <div><dt>{t.based}</dt><dd>{t.city}</dd></div>
+        </dl>
+        <div class="docs">
+          <a class="btn solid" href={site.cv} target="_blank" rel="noopener">{t.cv} <span class="arrow">→</span></a>
+          <a class="btn" href={site.portfolioPdf} target="_blank" rel="noopener">{t.portfolioPdf} <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="hist-h">
+      <div class="sec-head"><h2 id="hist-h">{t.historyTitle}</h2></div>
+      <ol class="timeline">
+        {t.history.map((h) => (
+          <li data-reveal><span class="yrs">{h.years}</span><span class="role">{h.role}</span><span class="place">{h.place}</span></li>
+        ))}
+      </ol>
+    </section>
+  </div>
+  <Contact lang={lang} />
+</Base>
