@@ -30,6 +30,7 @@ export const films: Film[] = [
   { id: '16iw09mokbuesImKMpSVLCO5Rmugqh8sX', title: 'A Plus', type: 'brand', year: 2024 },
   { id: '1QJ8Kj_oglNelYoMXpnajGg-GdBFFYkF6', title: 'EMA Contracting', type: 'event', year: 2024 },
   { id: '1GBJSRTg9Wbtf9_Ye0s2djP0-NXIprpF9', title: 'Boba Spot', type: 'brand', year: 2022 },
+  { id: '1nRSpTN6wgrXSoPWawkKu1h9Gyah4cY3L', title: 'Aerial Reel', type: 'drone', year: 2026 },
 ];
 
 export const player = (id: string) => `https://drive.google.com/file/d/${id}/preview`;

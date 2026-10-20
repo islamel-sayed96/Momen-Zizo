@@ -15,7 +15,7 @@ export const asset = (file: string) => `${base}/${file}`;
 
 type Strings = {
   dir: 'ltr' | 'rtl';
-  nav: { work: string; films: string; about: string; contact: string };
+  nav: { video: string; photo: string; drone: string; about: string; contact: string };
   menu: string; close: string;
   langSwitch: string; themeDark: string; themeLight: string;
   skip: string;
@@ -30,14 +30,15 @@ type Strings = {
   stats: { years: string; artists: string; countries: string; categories: string };
   servicesTitle: string;
   services: { title: string; text: string; items: string[] }[];
-  contactTitle: [string, string]; contactLede: string;
+  contactTitle: [string, string]; contactLede: string; socialTitle: string;
   email: string; whatsapp: string; instagram: string; copy: string; copied: string;
   downloads: string; cv: string; portfolioPdf: string; driveFolder: string;
   photoPageTitle: string; photoPageLede: string; all: string;
   filmPageTitle: string; filmPageLede: string;
+  dronePageTitle: string; dronePageLede: string;
   aboutTitle: string; aboutLede: string; bio: string[];
   historyTitle: string; history: { years: string; role: string; place: string }[];
-  kitTitle: string; kit: { camera: string; lens: string; motion: string; software: string };
+  equipmentTitle: string; softwareTitle: string;
   languagesTitle: string; languages: string;
   portraitNote: string;
   cats: Record<Category, string>;
@@ -49,6 +50,7 @@ type Strings = {
     home: { title: string; description: string };
     photography: { title: string; description: string };
     films: { title: string; description: string };
+    drone: { title: string; description: string };
     about: { title: string; description: string };
   };
 };
@@ -56,34 +58,36 @@ type Strings = {
 export const ui: Record<Lang, Strings> = {
   en: {
     dir: 'ltr',
-    nav: { work: 'Photography', films: 'Films', about: 'About', contact: 'Contact' },
+    nav: { video: 'Videography', photo: 'Photography', drone: 'Drone', about: 'About', contact: 'Contact Us' },
     menu: 'Menu', close: 'Close',
     langSwitch: 'العربية', themeDark: 'Switch to dark theme', themeLight: 'Switch to light theme',
     skip: 'Skip to content',
-    role: 'Photographer & Videographer', based: 'Based in', city: 'Dubai, UAE', since: 'Behind the camera since',
-    heroLede: 'Photographer, videographer and editor with over 15 years behind the camera. Weddings, concerts, events, brands and aerial work across the UAE and Egypt, shot and edited from the first frame to the final cut.',
-    ctaBook: 'Book a shoot', ctaWork: 'See the work',
+    role: 'Videographer | Photographer | Filmmaker | Drone Pilot', based: 'Based in', city: 'Dubai, UAE', since: 'Behind the camera since',
+    heroLede: 'I am a Videographer, Photographer, and Editor with over 15 years of professional experience in creating high-quality visual content.',
+    ctaBook: 'Book a shoot', ctaWork: 'Explore the work',
     reelLabel: 'Showreel · Palm Jumeirah from above', reelPlay: 'Play showreel',
     stillsTitle: 'Selected stills', stillsLede: 'A few favourite frames from weddings, stages, yachts and kitchens.', seeAllPhotos: 'See all photography',
-    filmsTitle: 'Selected films', filmsLede: 'Event films, brand videos and drone work, filmed and edited by Momen.', seeAllFilms: 'See all films',
+    filmsTitle: 'Selected films', filmsLede: 'Event films, brand videos and drone work, filmed and edited by Momen.', seeAllFilms: 'See all videography',
     stageTitle: 'On stage with', stageLede: 'Concert photography for some of the biggest names in Arabic music.', alsoOnStage: 'Also on stage with',
     trustedTitle: 'Brands & events',
     stats: { years: 'Years behind the camera', artists: 'Artists photographed on stage', countries: 'Countries: UAE and Egypt', categories: 'Kinds of shoots' },
     servicesTitle: 'Services',
     services: [
-      { title: 'Photography', text: 'Weddings, events, conferences, products, restaurants, real estate and yachts.', items: ['Lighting and camera setup on location', 'Selection, colour correction and retouching', 'High-res files for web and print'] },
       { title: 'Videography', text: 'Event films, brand videos, Reels, podcasts and concerts.', items: ['Sony A7 IV, gimbal and wireless audio', 'Horizontal films and vertical Reels', 'Aerial footage by drone'] },
+      { title: 'Photography', text: 'Weddings, events, conferences, products, restaurants, real estate and yachts.', items: ['Lighting and camera setup on location', 'Selection, colour correction and retouching', 'High-res files for web and print'] },
       { title: 'Editing', text: 'Already have footage? Momen will finish it.', items: ['Video editing in Premiere Pro', 'Motion graphics in After Effects', 'Photo retouching in Photoshop & Lightroom'] },
     ],
-    contactTitle: ["Let's make", 'something.'], contactLede: 'Tell Momen about your date, place and what you need, and he will get back to you with the details.',
+    contactTitle: ["Let's make", 'something amazing.'], contactLede: 'Tell Momen about your date, place and what you need, and he will get back to you with the details.',
+    socialTitle: 'Social media',
     email: 'Email', whatsapp: 'WhatsApp', instagram: 'Instagram', copy: 'Copy', copied: 'Copied',
     downloads: 'Documents', cv: 'Download CV', portfolioPdf: 'Portfolio PDF', driveFolder: 'Full archive on Google Drive',
     photoPageTitle: 'Photography', photoPageLede: 'Weddings, concerts, events, yachts, food, products, places and clinics. Tap any photo to view it full size.', all: 'All',
-    filmPageTitle: 'Films', filmPageLede: 'Event films, brand videos, podcasts and aerial work. Every video is filmed and edited by Momen.',
+    filmPageTitle: 'Videography', filmPageLede: 'Event films, brand videos and podcasts. Every video is filmed and edited by Momen.',
+    dronePageTitle: 'Drone', dronePageLede: 'Aerial footage over Dubai, filmed by Momen as a drone pilot.',
     aboutTitle: 'About', aboutLede: 'Behind the lens',
     bio: [
-      "I'm Momen Abd Elhady, known as Momen Zizo. I've been working as a videographer, photographer and editor since 2010, and I care most about light, composition and the story inside a moment.",
-      'I started in Alexandria, Egypt, and now work from Dubai for agencies, brands and private clients. I shoot weddings, conferences, concerts, products, restaurants, real estate and yachts, and I fly a drone for aerial photos and video.',
+      'I have been working as a Videographer, Photographer, Video Editor, Photo Editor and Content Creator since 2010.',
+      'I am a passionate and creative videographer and photographer with a keen eye for detail and a commitment to capturing the essence of every moment. With 15 years of experience, I have developed a strong technical proficiency in both photography and videography, specializing in Conferences, Fashion, Parties, Graduation Parties, Weddings, Products, Events, Trips and Real Estate. My work reflects a deep understanding of lighting, composition, and storytelling, allowing me to deliver visually compelling content that resonates with audiences.',
     ],
     historyTitle: 'Experience',
     history: [
@@ -97,30 +101,31 @@ export const ui: Record<Lang, Strings> = {
       { years: '2013 – 2017', role: 'Photographer & photo editor', place: 'Brightery Agency, Egypt' },
       { years: '2010 – 2012', role: 'Photographer & photo editor', place: 'Focus Team, Egypt' },
     ],
-    kitTitle: 'Kit', kit: { camera: 'Camera', lens: 'Lens', motion: 'Motion & audio', software: 'Software' },
+    equipmentTitle: 'Equipment', softwareTitle: 'Software',
     languagesTitle: 'Languages', languages: 'Arabic (native) · English (very good)',
     portraitNote: 'Portrait coming soon',
     cats: { weddings: 'Weddings', concerts: 'Concerts', events: 'Events', yachts: 'Yachts', food: 'Food & Coffee', products: 'Products', places: 'Places', medical: 'Clinics' },
     filmTypes: { drone: 'Drone', event: 'Event', brand: 'Brand', podcast: 'Podcast' },
     watch: 'Watch', openDrive: 'Open on Google Drive ↗', prev: 'Previous', next: 'Next',
-    footerLine: 'Photography · Videography · Editing', rights: 'All rights reserved.',
+    footerLine: 'Videography · Photography · Editing', rights: 'All rights reserved.',
     notFoundTitle: 'Out of frame', notFoundText: "This page doesn't exist. The work is still here.", backHome: 'Back to home',
     meta: {
-      home: { title: 'Momen Zizo · Photographer & Videographer in Dubai', description: 'Momen Abd Elhady (Momen Zizo) is a Dubai-based photographer, videographer and editor with 15+ years of experience in weddings, concerts, events, brands and drone work.' },
+      home: { title: 'Momen Zizo | Visuals · Videographer & Photographer in Dubai', description: 'Momen Abd Elhady (Momen Zizo) is a Dubai-based videographer, photographer, filmmaker and drone pilot with 15+ years of experience in events, concerts, weddings and brands.' },
       photography: { title: 'Photography · Momen Zizo', description: 'Wedding, concert, event, yacht, food and product photography by Momen Zizo, a photographer based in Dubai, UAE.' },
-      films: { title: 'Films · Momen Zizo', description: 'Event films, brand videos, podcasts and drone footage filmed and edited by Momen Zizo in Dubai and Egypt.' },
-      about: { title: 'About · Momen Zizo', description: 'Momen Abd Elhady (Momen Zizo): experience, kit and CV of a Dubai-based photographer and videographer working since 2010.' },
+      films: { title: 'Videography · Momen Zizo', description: 'Event films, brand videos and podcasts filmed and edited by Momen Zizo, a videographer in Dubai.' },
+      drone: { title: 'Drone · Momen Zizo', description: 'Drone and aerial videography in Dubai by Momen Zizo, videographer and drone pilot.' },
+      about: { title: 'About · Momen Zizo', description: 'Momen Abd Elhady (Momen Zizo): experience, equipment and CV of a Dubai-based videographer and photographer working since 2010.' },
     },
   },
   ar: {
     dir: 'rtl',
-    nav: { work: 'التصوير', films: 'الفيديو', about: 'عنّي', contact: 'تواصل' },
+    nav: { video: 'الفيديو', photo: 'التصوير', drone: 'الدرون', about: 'عنّي', contact: 'تواصل معنا' },
     menu: 'القائمة', close: 'إغلاق',
     langSwitch: 'English', themeDark: 'الوضع الداكن', themeLight: 'الوضع الفاتح',
     skip: 'تخطَّ إلى المحتوى',
-    role: 'مصوّر فوتوغرافي وفيديو', based: 'مقيم في', city: 'دبي، الإمارات', since: 'خلف الكاميرا منذ',
-    heroLede: 'مصوّر فوتوغرافي ومصوّر فيديو ومونتير بخبرة تزيد عن 15 سنة. أفراح وحفلات ومؤتمرات وبراندات وتصوير جوي في الإمارات ومصر، من أول لقطة لحد آخر مونتاج.',
-    ctaBook: 'احجز تصوير', ctaWork: 'شوف الأعمال',
+    role: 'مصوّر فيديو | مصوّر فوتوغرافي | صانع أفلام | طيّار درون', based: 'مقيم في', city: 'دبي، الإمارات', since: 'خلف الكاميرا منذ',
+    heroLede: 'أنا مصوّر فيديو ومصوّر فوتوغرافي ومونتير بخبرة مهنية تزيد عن 15 سنة في صناعة محتوى بصري عالي الجودة.',
+    ctaBook: 'احجز تصوير', ctaWork: 'استكشف الأعمال',
     reelLabel: 'شوريل · نخلة جميرا من فوق', reelPlay: 'شغّل الشوريل',
     stillsTitle: 'صور مختارة', stillsLede: 'مجموعة من أحب اللقطات من الأفراح والمسارح واليخوت والمطاعم.', seeAllPhotos: 'كل الصور',
     filmsTitle: 'فيديوهات مختارة', filmsLede: 'فيديوهات إيفنتات وبراندات وتصوير جوي، تصوير ومونتاج مؤمن.', seeAllFilms: 'كل الفيديوهات',
@@ -129,19 +134,21 @@ export const ui: Record<Lang, Strings> = {
     stats: { years: 'سنة خلف الكاميرا', artists: 'فنانين صوّرهم على المسرح', countries: 'دولتين: الإمارات ومصر', categories: 'أنواع تصوير' },
     servicesTitle: 'الخدمات',
     services: [
-      { title: 'تصوير فوتوغرافي', text: 'أفراح وإيفنتات ومؤتمرات ومنتجات ومطاعم وعقارات ويخوت.', items: ['تجهيز الإضاءة والكاميرا في الموقع', 'اختيار الصور وتصحيح الألوان والريتاتش', 'ملفات عالية الجودة للنشر والطباعة'] },
       { title: 'تصوير فيديو', text: 'فيديوهات إيفنتات وبراندات وريلز وبودكاست وحفلات.', items: ['Sony A7 IV مع جيمبال وصوت وايرلس', 'فيديوهات بالعرض وريلز بالطول', 'تصوير جوي بالدرون'] },
+      { title: 'تصوير فوتوغرافي', text: 'أفراح وإيفنتات ومؤتمرات ومنتجات ومطاعم وعقارات ويخوت.', items: ['تجهيز الإضاءة والكاميرا في الموقع', 'اختيار الصور وتصحيح الألوان والريتاتش', 'ملفات عالية الجودة للنشر والطباعة'] },
       { title: 'مونتاج', text: 'عندك فيديو متصوّر؟ مؤمن يكمّله.', items: ['مونتاج على Premiere Pro', 'موشن جرافيك على After Effects', 'ريتاتش صور على Photoshop وLightroom'] },
     ],
-    contactTitle: ['يلا نعمل', 'حاجة حلوة.'], contactLede: 'قول لمؤمن على الميعاد والمكان واللي محتاجه، وهو هيرد عليك بالتفاصيل.',
+    contactTitle: ['يلا نعمل', 'حاجة مميزة.'], contactLede: 'قول لمؤمن على الميعاد والمكان واللي محتاجه، وهو هيرد عليك بالتفاصيل.',
+    socialTitle: 'السوشيال ميديا',
     email: 'الإيميل', whatsapp: 'واتساب', instagram: 'إنستجرام', copy: 'نسخ', copied: 'اتنسخ',
     downloads: 'ملفات', cv: 'تحميل السي في', portfolioPdf: 'البورتفوليو PDF', driveFolder: 'الأرشيف الكامل على جوجل درايف',
     photoPageTitle: 'التصوير الفوتوغرافي', photoPageLede: 'أفراح وحفلات وإيفنتات ويخوت وأكل ومنتجات وأماكن وعيادات. دوس على أي صورة عشان تشوفها كبيرة.', all: 'الكل',
-    filmPageTitle: 'الفيديو', filmPageLede: 'فيديوهات إيفنتات وبراندات وبودكاست وتصوير جوي. كل فيديو تصوير ومونتاج مؤمن.',
+    filmPageTitle: 'تصوير الفيديو', filmPageLede: 'فيديوهات إيفنتات وبراندات وبودكاست. كل فيديو تصوير ومونتاج مؤمن.',
+    dronePageTitle: 'الدرون', dronePageLede: 'تصوير جوي فوق دبي، بعدسة مؤمن كطيّار درون.',
     aboutTitle: 'عنّي', aboutLede: 'ورا العدسة',
     bio: [
-      'أنا مؤمن عبد الهادي، معروف باسم مؤمن زيزو. شغال مصوّر فيديو وفوتوغرافي ومونتير من سنة 2010، وأكتر حاجة بهتم بيها هي الإضاءة والتكوين والحكاية اللي جوه كل لحظة.',
-      'بدأت في إسكندرية، ودلوقتي شغال من دبي مع وكالات وبراندات وعملاء أفراد. بصوّر أفراح ومؤتمرات وحفلات ومنتجات ومطاعم وعقارات ويخوت، وبطيّر درون للتصوير الجوي.',
+      'شغال مصوّر فيديو ومصوّر فوتوغرافي ومونتير فيديو ومعدّل صور وصانع محتوى من سنة 2010.',
+      'أنا مصوّر فيديو وفوتوغرافي شغوف ومبدع، بهتم بأدق التفاصيل وبحرص إني ألتقط روح كل لحظة. خلال 15 سنة خبرة طورت مهارة تقنية قوية في التصوير الفوتوغرافي والفيديو، ومتخصص في المؤتمرات والفاشون والحفلات وحفلات التخرج والأفراح والمنتجات والإيفنتات والرحلات والعقارات. شغلي بيعكس فهم عميق للإضاءة والتكوين والحكي البصري، وده بيخليني أقدّم محتوى بصري مؤثر بيوصل للناس.',
     ],
     historyTitle: 'الخبرة',
     history: [
@@ -155,18 +162,19 @@ export const ui: Record<Lang, Strings> = {
       { years: '2013 – 2017', role: 'مصوّر فوتوغرافي ومعدّل صور', place: 'Brightery Agency، مصر' },
       { years: '2010 – 2012', role: 'مصوّر فوتوغرافي ومعدّل صور', place: 'Focus Team، مصر' },
     ],
-    kitTitle: 'المعدات', kit: { camera: 'الكاميرا', lens: 'العدسة', motion: 'الحركة والصوت', software: 'البرامج' },
+    equipmentTitle: 'المعدات', softwareTitle: 'البرامج',
     languagesTitle: 'اللغات', languages: 'العربية (لغة أم) · الإنجليزية (جيد جداً)',
     portraitNote: 'الصورة الشخصية قريباً',
     cats: { weddings: 'أفراح', concerts: 'حفلات', events: 'إيفنتات', yachts: 'يخوت', food: 'أكل وقهوة', products: 'منتجات', places: 'أماكن', medical: 'عيادات' },
     filmTypes: { drone: 'درون', event: 'إيفنت', brand: 'براند', podcast: 'بودكاست' },
     watch: 'شاهد', openDrive: 'افتح على جوجل درايف ↗', prev: 'السابق', next: 'التالي',
-    footerLine: 'تصوير فوتوغرافي · فيديو · مونتاج', rights: 'جميع الحقوق محفوظة.',
+    footerLine: 'فيديو · تصوير فوتوغرافي · مونتاج', rights: 'جميع الحقوق محفوظة.',
     notFoundTitle: 'خارج الكادر', notFoundText: 'الصفحة دي مش موجودة، بس الشغل لسه هنا.', backHome: 'ارجع للرئيسية',
     meta: {
-      home: { title: 'مؤمن زيزو · مصوّر فوتوغرافي وفيديو في دبي', description: 'مؤمن عبد الهادي (مؤمن زيزو) مصوّر فوتوغرافي وفيديو ومونتير في دبي، بخبرة أكتر من 15 سنة في الأفراح والحفلات والإيفنتات والبراندات والتصوير الجوي.' },
+      home: { title: 'مؤمن زيزو | فيجوالز · مصوّر فيديو وفوتوغرافي في دبي', description: 'مؤمن عبد الهادي (مؤمن زيزو) مصوّر فوتوغرافي وفيديو ومونتير في دبي، بخبرة أكتر من 15 سنة في الأفراح والحفلات والإيفنتات والبراندات والتصوير الجوي.' },
       photography: { title: 'التصوير الفوتوغرافي · مؤمن زيزو', description: 'تصوير أفراح وحفلات وإيفنتات ويخوت وأكل ومنتجات بعدسة مؤمن زيزو، مصوّر في دبي.' },
-      films: { title: 'الفيديو · مؤمن زيزو', description: 'فيديوهات إيفنتات وبراندات وبودكاست وتصوير جوي، تصوير ومونتاج مؤمن زيزو.' },
+      films: { title: 'تصوير الفيديو · مؤمن زيزو', description: 'فيديوهات إيفنتات وبراندات وبودكاست، تصوير ومونتاج مؤمن زيزو في دبي.' },
+      drone: { title: 'الدرون · مؤمن زيزو', description: 'تصوير جوي بالدرون في دبي بعدسة مؤمن زيزو، مصوّر فيديو وطيّار درون.' },
       about: { title: 'عن مؤمن زيزو', description: 'خبرة ومعدات والسي في بتاع مؤمن عبد الهادي (مؤمن زيزو)، مصوّر فوتوغرافي وفيديو في دبي من 2010.' },
     },
   },

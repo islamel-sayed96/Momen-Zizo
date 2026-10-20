@@ -4,16 +4,19 @@ const drive = (id: string) => `https://drive.google.com/file/d/${id}/view`;
 
 export const site = {
   brand: 'Momen Zizo',
+  brandLine: 'Momen Zizo | Visuals',
   fullName: 'Momen Abd Elhady',
   handle: 'momenzizo.visuals',
   email: 'momenzizo50@gmail.com',
   phone: '+971 54 535 8380',
   phoneHref: '+971545358380',
   instagram: 'https://www.instagram.com/momenzizo.visuals/',
+  behance: 'https://www.behance.net/momenzizo40',
+  linkedin: 'https://www.linkedin.com/in/momen-abd-elhady/',
   whatsapp: 'https://wa.me/971545358380',
   since: 2010,
   cv: drive('1dvg9OqHgFeIChXe6BQ6jzc0nPU2CjWjS'),
-  portfolioPdf: drive('1PdaFTLpVFW5LUN2ix9FvoY2daob9ScPy'),
+  portfolioPdf: drive('1mm3PneR84inU_Te4UNeLSpCPtxGoB_k-'),
   driveFolder: 'https://drive.google.com/drive/folders/1Kh3WAcyo-3jT2U-Hd2LFvgY7DyMBshLS',
 };
 
@@ -32,9 +35,20 @@ export const clients = [
   'Soul Media Production', 'Brightery', 'Wedding Studio',
 ];
 
-export const gear = {
-  camera: 'Sony A7 IV',
-  lens: 'Sony 24–70 GM II',
-  motion: 'DJI gimbal · DJI drone · DJI Mic',
-  software: 'Premiere Pro · After Effects · Photoshop · Lightroom',
-};
+export const socials = [
+  { name: 'Instagram', handle: '@momenzizo.visuals', href: site.instagram },
+  { name: 'Behance', handle: 'momenzizo40', href: site.behance },
+  { name: 'LinkedIn', handle: 'momen-abd-elhady', href: site.linkedin },
+];
+
+export const equipment = [
+  'Camera Sony A7 IV',
+  'Sony 24-70 GM 2',
+  'DJI Gimbal',
+  'DJI Drone',
+  'DJI Microphone',
+  'Professional Lighting Equipment and Lighting accessories',
+  'Tripods, Camera Support Equipment & Gimbal Support Equipment',
+];
+
+export const software = ['Adobe Premiere Pro', 'Adobe After Effects', 'Adobe Photoshop', 'Adobe Lightroom', 'DaVinci Resolve'];

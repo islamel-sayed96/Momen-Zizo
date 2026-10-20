@@ -1,12 +1,11 @@
 ---
 import '../styles/global.css';
-import Logo from '../components/Logo.astro';
 import { ui, path, asset, type Lang } from '../i18n/ui';
-import { site } from '../data/site';
+import { site, socials } from '../data/site';
 
 interface Props {
   lang: Lang;
-  page: '' | 'photography' | 'films' | 'about' | '404';
+  page: '' | 'videography' | 'photography' | 'drone' | 'about' | '404';
   title: string;
   description: string;
   image?: string;
@@ -19,8 +18,9 @@ const origin = Astro.site ? Astro.site.origin : '';
 const canonical = origin + path(lang, pageKey);
 const ogImage = image ?? origin + asset('og.png');
 const navItems = [
-  { key: 'photography', label: t.nav.work },
-  { key: 'films', label: t.nav.films },
+  { key: 'videography', label: t.nav.video },
+  { key: 'photography', label: t.nav.photo },
+  { key: 'drone', label: t.nav.drone },
   { key: 'about', label: t.nav.about },
 ] as const;
 
@@ -32,18 +32,19 @@ const jsonLd = {
       '@id': `${origin}${path('en')}#momen`,
       name: site.fullName,
       alternateName: site.brand,
-      jobTitle: 'Photographer & Videographer',
+      jobTitle: 'Videographer, Photographer, Filmmaker & Drone Pilot',
       email: `mailto:${site.email}`,
       telephone: site.phoneHref,
       url: origin + path('en'),
-      image: ogImage,
-      sameAs: [site.instagram],
+      image: origin + asset('momen.jpg'),
+      sameAs: socials.map((s) => s.href),
       address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
       knowsLanguage: ['ar', 'en'],
     },
     {
       '@type': 'ProfessionalService',
-      name: `${site.brand} — Photography & Videography`,
+      name: site.brandLine,
+      logo: origin + asset('logo.png'),
       url: origin + path('en'),
       image: ogImage,
       telephone: site.phoneHref,
@@ -83,8 +84,8 @@ const jsonLd = {
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
 
-  <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
   <link rel="icon" href={asset('favicon-32.png')} sizes="32x32" type="image/png" />
+  <link rel="icon" href={asset('icon-512.png')} sizes="512x512" type="image/png" />
   <link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -105,9 +106,9 @@ const jsonLd = {
   <a class="skip" href="#main">{t.skip}</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href={path(lang)} aria-label={site.brand}>
-        <Logo />
-        <span>{site.brand}</span>
+      <a class="logo" href={path(lang)} aria-label={site.brandLine}>
+        <img src={asset('logo-mark.webp')} alt="" width="46" height="40" />
+        <span>Momen Zizo <i>|</i> Visuals</span>
       </a>
       <nav class="nav" id="nav" aria-label="Main">
         {navItems.map((n) => (
@@ -135,14 +136,17 @@ const jsonLd = {
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <span class="mono">© {new Date().getFullYear()} {site.fullName} · {t.footerLine}</span>
-      <nav class="mono" aria-label="Footer">
-        <a href={site.instagram} target="_blank" rel="noopener">Instagram</a>
-        <a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
-        <a href={`mailto:${site.email}`}>Email</a>
-        <a href={site.cv} target="_blank" rel="noopener">CV</a>
+    <div class="wrap footer-top">
+      <nav class="footer-social" aria-label={t.socialTitle}>
+        {socials.map((so) => <a href={so.href} target="_blank" rel="noopener me">{so.name}</a>)}
       </nav>
+      <div class="footer-contact">
+        <a href={`tel:${site.phoneHref}`} dir="ltr">{site.phone}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span class="mono">© {new Date().getFullYear()} MOMEN ABD ELHADY · VIDEOGRAPHY · PHOTOGRAPHY · EDITING</span>
     </div>
   </footer>
 

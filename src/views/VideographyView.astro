@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import FilmGrid from '../components/FilmGrid.astro';
+import { ui, path, type Lang } from '../i18n/ui';
+import { films } from '../data/films';
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+const items = films.filter((f) => f.type !== 'drone');
+---
+<Base lang={lang} page="videography" title={t.meta.films.title} description={t.meta.films.description}>
+  <div class="wrap">
+    <header class="page-head">
+      <h1 class="page-title">{t.filmPageTitle}</h1>
+      <p>{t.filmPageLede}</p>
+    </header>
+    <FilmGrid lang={lang} items={items} featured />
+    <div class="sec-foot"><a class="btn" href={path(lang, 'drone')}>{t.nav.drone} <span class="arrow">→</span></a></div>
+  </div>
+</Base>

@@ -1,6 +1,6 @@
 ---
 import { ui, type Lang } from '../i18n/ui';
-import { site } from '../data/site';
+import { site, socials } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const t = ui[lang];
 ---
@@ -10,7 +10,16 @@ const t = ui[lang];
   <div class="channels">
     <div class="channel"><span class="mono">{t.email}</span><a class="val" href={`mailto:${site.email}`} data-copy-src>{site.email}</a><button class="copy" type="button" data-copy={site.email} data-done={t.copied}>{t.copy}</button></div>
     <div class="channel"><span class="mono">{t.whatsapp}</span><a class="val" href={site.whatsapp} target="_blank" rel="noopener">{site.phone}</a><button class="copy" type="button" data-copy={site.phone} data-done={t.copied}>{t.copy}</button></div>
-    <div class="channel"><span class="mono">{t.instagram}</span><a class="val" href={site.instagram} target="_blank" rel="noopener">@{site.handle}</a><button class="copy" type="button" data-copy={`@${site.handle}`} data-done={t.copied}>{t.copy}</button></div>
+  </div>
+  <h3 class="social-title mono">{t.socialTitle}</h3>
+  <div class="socials">
+    {socials.map((so) => (
+      <a class="social" href={so.href} target="_blank" rel="noopener me">
+        <span class="social-name">{so.name}</span>
+        <span class="social-handle">{so.handle}</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    ))}
   </div>
   <div class="docs">
     <a class="btn solid" href={site.cv} target="_blank" rel="noopener">{t.cv} <span class="arrow">→</span></a>

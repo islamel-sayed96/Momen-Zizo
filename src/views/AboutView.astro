@@ -1,9 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import Logo from '../components/Logo.astro';
 import Contact from '../components/Contact.astro';
-import { ui, type Lang } from '../i18n/ui';
-import { site, gear } from '../data/site';
+import { ui, asset, type Lang } from '../i18n/ui';
+import { site, equipment, software } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const t = ui[lang];
 ---
@@ -11,23 +10,27 @@ const t = ui[lang];
   <div class="wrap">
     <header class="page-head">
       <span class="mono">{t.aboutLede}</span>
-      <h1 class="page-title">{lang === 'ar' ? 'مؤمن عبد الهادي' : site.fullName}</h1>
+      <h1 class="page-title">{lang === 'ar' ? 'مؤمن عبد الهادي' : 'Momen Abd ElHady'}</h1>
     </header>
     <div class="about">
-      <div class="portrait" data-reveal>
-        <Logo />
-        <span class="mono">{t.portraitNote}</span>
-      </div>
+      <figure class="portrait" data-reveal>
+        <img src={asset('momen.jpg')} srcset={`${asset('momen-600.jpg')} 600w, ${asset('momen.jpg')} 948w`} sizes="(max-width: 860px) 100vw, 40vw" width="948" height="1180" alt={`${site.fullName}, videographer and photographer`} loading="eager" />
+        <figcaption class="mono">{site.fullName} · {t.city}</figcaption>
+      </figure>
       <div class="bio">
         {t.bio.map((p) => <p>{p}</p>)}
-        <dl class="kit">
-          <div><dt>{t.kit.camera}</dt><dd>{gear.camera}</dd></div>
-          <div><dt>{t.kit.lens}</dt><dd>{gear.lens}</dd></div>
-          <div><dt>{t.kit.motion}</dt><dd>{gear.motion}</dd></div>
-          <div><dt>{t.kit.software}</dt><dd>{gear.software}</dd></div>
-          <div><dt>{t.languagesTitle}</dt><dd>{t.languages}</dd></div>
-          <div><dt>{t.based}</dt><dd>{t.city}</dd></div>
-        </dl>
+        <div class="specs">
+          <div>
+            <h2 class="mono">{t.equipmentTitle}</h2>
+            <ul>{equipment.map((e) => <li>{e}</li>)}</ul>
+          </div>
+          <div>
+            <h2 class="mono">{t.softwareTitle}</h2>
+            <ul>{software.map((e) => <li>{e}</li>)}</ul>
+            <h2 class="mono">{t.languagesTitle}</h2>
+            <p>{t.languages}</p>
+          </div>
+        </div>
         <div class="docs">
           <a class="btn solid" href={site.cv} target="_blank" rel="noopener">{t.cv} <span class="arrow">→</span></a>
           <a class="btn" href={site.portfolioPdf} target="_blank" rel="noopener">{t.portfolioPdf} <span class="arrow">→</span></a>

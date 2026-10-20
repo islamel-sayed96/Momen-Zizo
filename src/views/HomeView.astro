@@ -12,11 +12,11 @@ const { lang } = Astro.props as { lang: Lang };
 const t = ui[lang];
 const featured = photos.filter((p) => p.featured);
 const stripPhotos = photos.filter((p) => !p.featured).slice(0, 14);
-const featuredFilms = films.filter((f) => f.featured);
+const featuredFilms = films.filter((f) => f.featured && f.type !== 'drone');
 const otherArtists = artists.filter((a) => !onStage.some((s) => s.artist === a));
 const brandsA = clients.slice(0, 6);
 const brandsB = clients.slice(6);
-const [first, last] = lang === 'ar' ? ['مؤمن', 'زيزو'] : ['Momen', 'Zizo'];
+const [first, last] = lang === 'ar' ? ['مؤمن', 'عبد الهادي'] : ['Momen', 'Abd ElHady'];
 ---
 <Base lang={lang} page="" title={t.meta.home.title} description={t.meta.home.description}>
   <link slot="head" rel="preload" as="image" href={poster(showreel.id, 1600)} fetchpriority="high" />
@@ -35,7 +35,7 @@ const [first, last] = lang === 'ar' ? ['مؤمن', 'زيزو'] : ['Momen', 'Zizo
       <p class="lede" data-hero-fade>{t.heroLede}</p>
       <div class="hero-ctas" data-hero-fade>
         <a class="btn solid" href="#contact">{t.ctaBook} <span class="arrow">→</span></a>
-        <a class="btn ghost" href={path(lang, 'photography')}>{t.ctaWork}</a>
+        <a class="btn ghost" href={path(lang, 'videography')}>{t.ctaWork}</a>
       </div>
     </div>
     <div data-hero-reel>
@@ -49,7 +49,7 @@ const [first, last] = lang === 'ar' ? ['مؤمن', 'زيزو'] : ['Momen', 'Zizo
         </span>
         <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l16 9-16 9z"/></svg></span>
       </a>
-      <div class="reel-caption mono"><span>{t.reelLabel}</span><a href={path(lang, 'films')}>{t.seeAllFilms} <span class="arrow">→</span></a></div>
+      <div class="reel-caption mono"><span>{t.reelLabel}</span><a href={path(lang, 'videography')}>{t.seeAllFilms} <span class="arrow">→</span></a></div>
     </div>
   </section>
 
@@ -70,7 +70,7 @@ const [first, last] = lang === 'ar' ? ['مؤمن', 'زيزو'] : ['Momen', 'Zizo
   <section class="section wrap" aria-labelledby="films-h">
     <div class="sec-head"><h2 id="films-h">{t.filmsTitle}</h2><p>{t.filmsLede}</p></div>
     <FilmGrid lang={lang} items={featuredFilms} featured />
-    <div class="sec-foot"><a class="btn" href={path(lang, 'films')}>{t.seeAllFilms} <span class="arrow">→</span></a></div>
+    <div class="sec-foot"><a class="btn" href={path(lang, 'videography')}>{t.seeAllFilms} <span class="arrow">→</span></a></div>
   </section>
 
   <section class="section wrap" aria-labelledby="stage-h">
