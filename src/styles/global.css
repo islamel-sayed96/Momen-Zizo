@@ -349,4 +349,6 @@ dialog::backdrop { background: var(--scrim); }
 .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px 28px; padding-block: 26px 18px !important; }
 .footer-social, .footer-contact { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; }
 .footer-social a { text-transform: uppercase; }
-.footer-bottom { border-top: 1px solid var(--line); padding-block: 16px 30px !important; }
+.footer-bottom { border-top: 1px solid var(--line); padding-block: 16px 30px !important; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; }
+.powered a { color: var(--fg); }
+.powered a:hover { color: var(--accent); }
