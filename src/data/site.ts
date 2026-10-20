@@ -51,4 +51,4 @@ export const equipment = [
   'Tripods, Camera Support Equipment & Gimbal Support Equipment',
 ];
 
-export const software = ['Adobe Premiere Pro', 'Adobe After Effects', 'Adobe Photoshop', 'Adobe Lightroom', 'DaVinci Resolve'];
+export const software = ['Adobe Premiere Pro', 'Adobe After Effects', 'DaVinci Resolve', 'Adobe Photoshop', 'Adobe Lightroom'];
