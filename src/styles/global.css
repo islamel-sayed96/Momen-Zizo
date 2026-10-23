@@ -326,15 +326,9 @@ dialog::backdrop { background: var(--scrim); }
 
 /* ---------- Socials (contact) ---------- */
 .social-title { margin: 36px 0 12px; font-weight: 500; }
-.socials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.social { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 20px 20px 22px 0; border-bottom: 1px solid var(--line); text-decoration: none; min-width: 0; transition: color .2s; }
-.social + .social { padding-inline-start: 20px; border-inline-start: 1px solid var(--line); }
-.social-name { font-family: "Archivo", sans-serif; font-stretch: 75%; font-weight: 800; font-size: clamp(26px, 2.6vw, 36px); text-transform: uppercase; line-height: 1; }
-.social-handle { grid-column: 1; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; direction: ltr; text-align: start; }
-.social .arrow { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: var(--accent); font-size: 22px; }
-:root[dir="rtl"] .social .arrow { transform: scaleX(-1); }
-.social:hover .social-name { color: var(--accent); }
-@media (max-width: 860px) { .socials { grid-template-columns: 1fr; } .social + .social { padding-inline-start: 0; border-inline-start: 0; } }
+.socials { display: flex; flex-wrap: wrap; gap: 12px; }
+.social { display: grid; place-items: center; width: 60px; height: 60px; border: 1px solid var(--line); border-radius: 50%; color: var(--fg); text-decoration: none; transition: color .25s, border-color .25s, background .25s, transform .25s var(--ease); }
+.social:hover { color: var(--on-accent); background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
 
 /* ---------- About specs ---------- */
 .specs { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; margin-top: 30px; border-top: 1px solid var(--line); padding-top: 22px; }
@@ -348,7 +342,9 @@ dialog::backdrop { background: var(--scrim); }
 /* ---------- Footer ---------- */
 .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px 28px; padding-block: 26px 18px !important; }
 .footer-social, .footer-contact { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; }
-.footer-social a { text-transform: uppercase; }
+.footer-social { gap: 16px; align-items: center; }
+.footer-social a { display: inline-grid; place-items: center; color: var(--muted); transition: color .2s; }
+.footer-social a:hover { color: var(--accent); }
 .footer-bottom { border-top: 1px solid var(--line); padding-block: 16px 30px !important; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; }
 .powered a { color: var(--fg); }
 .powered a:hover { color: var(--accent); }

@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { ui, path, asset, type Lang } from '../i18n/ui';
 import { site, socials } from '../data/site';
+import SocialIcon from '../components/SocialIcon.astro';
 
 interface Props {
   lang: Lang;
@@ -138,7 +139,7 @@ const jsonLd = {
   <footer class="site-footer">
     <div class="wrap footer-top">
       <nav class="footer-social" aria-label={t.socialTitle}>
-        {socials.map((so) => <a href={so.href} target="_blank" rel="noopener me">{so.name}</a>)}
+        {socials.map((so) => <a href={so.href} target="_blank" rel="noopener me" aria-label={so.name} title={so.name}><SocialIcon name={so.name} size={20} /></a>)}
       </nav>
       <div class="footer-contact">
         <a href={`tel:${site.phoneHref}`} dir="ltr">{site.phone}</a>

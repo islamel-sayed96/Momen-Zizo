@@ -1,0 +1,20 @@
+---
+// Brand icons for the social links (simple, single-colour, inherit currentColor).
+interface Props { name: string; size?: number }
+const { name, size = 24 } = Astro.props;
+---
+{name === 'Instagram' && (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+    <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+  </svg>
+)}
+{name === 'Behance' && (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M8.2 11.3c.9-.4 1.5-1.2 1.5-2.4C9.7 6.9 8.3 6 6.2 6H1v12h5.4c2.2 0 4-1 4-3.3 0-1.5-.8-2.9-2.2-3.4ZM3.4 8h2.5c.9 0 1.5.4 1.5 1.2 0 .9-.6 1.3-1.5 1.3H3.4V8Zm2.7 8H3.4v-3.4h2.8c1.1 0 1.8.5 1.8 1.7 0 1.2-.8 1.7-1.9 1.7ZM17.5 9.1c-2.7 0-4.5 1.9-4.5 4.5 0 2.7 1.7 4.5 4.5 4.5 2.1 0 3.5-1 4.1-2.9h-2.2c-.2.6-1 1-1.8 1-1.3 0-2.1-.8-2.2-2.1H22c.2-2.9-1.4-5-4.5-5Zm-2.1 3.6c.1-1.1.8-1.8 2-1.8 1.1 0 1.8.7 1.9 1.8h-3.9ZM14.5 6.7h5.6v1.4h-5.6z" />
+  </svg>
+)}
+{name === 'LinkedIn' && (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4V9.75Z" />
+  </svg>
+)}

@@ -1,6 +1,7 @@
 ---
 import { ui, type Lang } from '../i18n/ui';
 import { site, socials } from '../data/site';
+import SocialIcon from './SocialIcon.astro';
 const { lang } = Astro.props as { lang: Lang };
 const t = ui[lang];
 ---
@@ -14,10 +15,8 @@ const t = ui[lang];
   <h3 class="social-title mono">{t.socialTitle}</h3>
   <div class="socials">
     {socials.map((so) => (
-      <a class="social" href={so.href} target="_blank" rel="noopener me">
-        <span class="social-name">{so.name}</span>
-        <span class="social-handle">{so.handle}</span>
-        <span class="arrow" aria-hidden="true">↗</span>
+      <a class="social" href={so.href} target="_blank" rel="noopener me" aria-label={so.name} title={so.name}>
+        <SocialIcon name={so.name} size={26} />
       </a>
     ))}
   </div>
