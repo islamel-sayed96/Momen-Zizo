@@ -19,7 +19,7 @@ const caption = (p: Photo) => p.label ?? t.cats[p.cat];
 )}
 <div class="sheet" data-sheet>
   {items.map((p, i) => (
-    <figure class="still" data-cat={p.cat} data-reveal>
+    <figure class="still" data-cat={p.cat} data-reveal data-filter-item>
       <button type="button" data-lightbox={p.id} data-caption={`${caption(p)} · ${t.cats[p.cat]}`} aria-label={`${caption(p)}, ${t.cats[p.cat]}`}>
         <img
           src={img(p.id, 900)}

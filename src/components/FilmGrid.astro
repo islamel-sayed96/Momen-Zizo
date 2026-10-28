@@ -1,14 +1,24 @@
 ---
-import { poster, watchUrl, type Film } from '../data/films';
+import { poster, watchUrl, filmCategories, type Film } from '../data/films';
 import { ui, type Lang } from '../i18n/ui';
 
-interface Props { lang: Lang; items: Film[]; featured?: boolean }
-const { lang, items, featured = false } = Astro.props;
+interface Props { lang: Lang; items: Film[]; featured?: boolean; filters?: boolean }
+const { lang, items, featured = false, filters = false } = Astro.props;
 const t = ui[lang];
+const used = filmCategories.filter((c) => items.some((f) => f.type === c));
 ---
+{filters && (
+  <div class="filters" role="group" aria-label={t.filmPageTitle} data-filters>
+    <button class="chip" type="button" aria-pressed="true" data-cat="all">{t.all}<sup>{items.length}</sup></button>
+    {used.map((c) => (
+      <button class="chip" type="button" aria-pressed="false" data-cat={c}>{t.filmTypes[c]}<sup>{items.filter((f) => f.type === c).length}</sup></button>
+    ))}
+    <button class="chip" type="button" disabled aria-disabled="true">{t.realEstate} <span class="soon">({t.soon})</span></button>
+  </div>
+)}
 <div class={`films${featured ? ' featured' : ''}`}>
   {items.map((f, i) => (
-    <a class="film" href={watchUrl(f.id)} target="_blank" rel="noopener" data-video={f.id} data-title={f.title} data-cursor={t.watch} data-reveal>
+    <a class="film" href={watchUrl(f.id)} target="_blank" rel="noopener" data-video={f.id} data-title={f.title} data-cursor={t.watch} data-reveal data-filter-item data-cat={f.type}>
       <div class="film-frame">
         <img src={poster(f.id, featured && i === 0 ? 1600 : 960)} alt={`${f.title} — ${t.filmTypes[f.type]} video by Momen Zizo`} loading="lazy" decoding="async" data-drive-video={f.id} />
         <span class="tag">{t.filmTypes[f.type]}</span>

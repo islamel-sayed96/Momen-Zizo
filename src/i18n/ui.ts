@@ -28,6 +28,7 @@ type Strings = {
   stageTitle: string; stageLede: string; alsoOnStage: string;
   trustedTitle: string;
   stats: { years: string; artists: string; countries: string; categories: string };
+  brandsLabel: string; eventsLabel: string;
   servicesTitle: string;
   services: { title: string; text: string; items: string[] }[];
   contactTitle: [string, string]; contactLede: string; socialTitle: string;
@@ -70,7 +71,7 @@ export const ui: Record<Lang, Strings> = {
     stillsTitle: 'Selected stills', stillsLede: 'A few favourite frames from Events, Conferences, Concerts, Medical, Products, Weddings, Parties, Places, Restaurant.', seeAllPhotos: 'See all photography',
     filmsTitle: 'Selected films', filmsLede: 'A few favourite frames from Events, Conferences, Concerts, Medical, Products, Weddings, Parties, Places, Restaurant.', seeAllFilms: 'See all videography',
     stageTitle: 'On stage with', stageLede: 'Concert photography for some of the biggest names in Arabic music.', alsoOnStage: 'Also on stage with',
-    trustedTitle: 'Brands & events',
+    trustedTitle: 'Brands & events', brandsLabel: 'Brands', eventsLabel: 'Events',
     stats: { years: 'Years behind the camera', artists: 'Artists photographed on stage', countries: 'Countries: UAE and Egypt', categories: 'Kinds of shoots' },
     servicesTitle: 'Services',
     services: [
@@ -85,7 +86,7 @@ export const ui: Record<Lang, Strings> = {
     email: 'Email', whatsapp: 'WhatsApp', instagram: 'Instagram', copy: 'Copy', copied: 'Copied',
     downloads: 'Documents', cv: 'Download CV', portfolioPdf: 'Portfolio PDF', driveFolder: 'Full archive on Google Drive',
     photoPageTitle: 'Photography', photoPageLede: 'Events, Conferences, Concerts, Medical, Products, Weddings, Parties, Places, Restaurant and Real Estate <span class="soon">(soon)</span>. Tap any photo to view it full size.', all: 'All',
-    filmPageTitle: 'Videography', filmPageLede: 'Events, Conferences, Concerts, Medical, Products, Weddings, Parties, Places, Restaurant and Real Estate <span class="soon">(soon)</span>. Every video is filmed and edited by Momen.',
+    filmPageTitle: 'Videography', filmPageLede: 'Events, Medical, Products, Places, Restaurant, Social media, Podcast and Real Estate <span class="soon">(soon)</span>. Every video is filmed and edited by Momen.',
     dronePageTitle: 'Drone', dronePageLede: 'Aerial footage across the UAE, filmed by Momen as a drone pilot.',
     aboutTitle: 'About', aboutLede: 'Behind the lens',
     bio: [
@@ -95,10 +96,10 @@ export const ui: Record<Lang, Strings> = {
     historyTitle: 'Experience',
     history: [
       { years: '2025 – now', role: 'Videographer, photographer & editor', place: 'Save in Gold, UAE' },
-      { years: '2025 – now', role: 'Freelance photographer & videographer', place: 'UAE' },
+      { years: '2025 – now', role: 'Videographer, Photographer & Editor', place: 'Freelance, UAE' },
       { years: '2022 – 2024', role: 'Videographer & photographer', place: 'Layer Agency, Egypt' },
       { years: '2022 – 2023', role: 'Videographer & photographer', place: 'Soul Media Production, Egypt' },
-      { years: '2022', role: "Bahaa Sultan's photographer", place: 'Egypt' },
+      { years: '2022', role: 'Photographer & Photo Editor', place: 'Bahaa Sultan, Egypt' },
       { years: '2020 – 2024', role: 'Videographer & photographer', place: 'Udjat Agency, Egypt & UAE' },
       { years: '2016 – 2021', role: 'Videographer, photographer & photo editor', place: 'Wedding Studio, Egypt' },
       { years: '2013 – 2017', role: 'Photographer & photo editor', place: 'Brightery Agency, Egypt' },
@@ -108,7 +109,7 @@ export const ui: Record<Lang, Strings> = {
     languagesTitle: 'Languages', languages: 'Arabic (native) · English (very good)',
     portraitNote: 'Portrait coming soon',
     cats: { events: 'Events', conferences: 'Conferences', concerts: 'Concerts', medical: 'Medical', products: 'Products', weddings: 'Weddings', parties: 'Parties', places: 'Places', food: 'Restaurant' }, realEstate: 'Real Estate', soon: 'soon',
-    filmTypes: { drone: 'Drone', event: 'Event', brand: 'Brand', podcast: 'Podcast' },
+    filmTypes: { events: 'Events', medical: 'Medical', products: 'Products', places: 'Places', restaurant: 'Restaurant', social: 'Social media', podcast: 'Podcast', drone: 'Drone' },
     watch: 'Watch', openDrive: 'Open on Google Drive ↗', prev: 'Previous', next: 'Next',
     footerLine: 'Videography · Photography · Editing', rights: 'All rights reserved.',
     notFoundTitle: 'Out of frame', notFoundText: "This page doesn't exist. The work is still here.", backHome: 'Back to home',
@@ -133,7 +134,7 @@ export const ui: Record<Lang, Strings> = {
     stillsTitle: 'صور مختارة', stillsLede: 'مجموعة من أحب اللقطات من إيفنتات، مؤتمرات، حفلات، طبي، منتجات، أفراح، حفلات خاصة، أماكن، مطاعم.', seeAllPhotos: 'كل الصور',
     filmsTitle: 'فيديوهات مختارة', filmsLede: 'مجموعة من أحب اللقطات من إيفنتات، مؤتمرات، حفلات، طبي، منتجات، أفراح، حفلات خاصة، أماكن، مطاعم.', seeAllFilms: 'كل الفيديوهات',
     stageTitle: 'على المسرح مع', stageLede: 'تصوير حفلات لأكبر نجوم الغناء العربي.', alsoOnStage: 'وكمان على المسرح مع',
-    trustedTitle: 'براندات وإيفنتات',
+    trustedTitle: 'براندات وإيفنتات', brandsLabel: 'براندات', eventsLabel: 'إيفنتات',
     stats: { years: 'سنة خلف الكاميرا', artists: 'فنانين صوّرهم على المسرح', countries: 'دولتين: الإمارات ومصر', categories: 'أنواع تصوير' },
     servicesTitle: 'الخدمات',
     services: [
@@ -148,7 +149,7 @@ export const ui: Record<Lang, Strings> = {
     email: 'الإيميل', whatsapp: 'واتساب', instagram: 'إنستجرام', copy: 'نسخ', copied: 'اتنسخ',
     downloads: 'ملفات', cv: 'تحميل السي في', portfolioPdf: 'البورتفوليو PDF', driveFolder: 'الأرشيف الكامل على جوجل درايف',
     photoPageTitle: 'التصوير الفوتوغرافي', photoPageLede: 'إيفنتات، مؤتمرات، حفلات، طبي، منتجات، أفراح، حفلات خاصة، أماكن، مطاعم وعقارات <span class="soon">(قريباً)</span>. دوس على أي صورة عشان تشوفها كبيرة.', all: 'الكل',
-    filmPageTitle: 'تصوير الفيديو', filmPageLede: 'إيفنتات، مؤتمرات، حفلات، طبي، منتجات، أفراح، حفلات خاصة، أماكن، مطاعم وعقارات <span class="soon">(قريباً)</span>. كل فيديو تصوير ومونتاج مؤمن.',
+    filmPageTitle: 'تصوير الفيديو', filmPageLede: 'إيفنتات، طبي، منتجات، أماكن، مطاعم، سوشيال ميديا، بودكاست وعقارات <span class="soon">(قريباً)</span>. كل فيديو تصوير ومونتاج مؤمن.',
     dronePageTitle: 'الدرون', dronePageLede: 'تصوير جوي في الإمارات، بعدسة مؤمن كطيّار درون.',
     aboutTitle: 'عنّي', aboutLede: 'ورا العدسة',
     bio: [
@@ -158,10 +159,10 @@ export const ui: Record<Lang, Strings> = {
     historyTitle: 'الخبرة',
     history: [
       { years: '2025 – الآن', role: 'مصوّر فيديو وفوتوغرافي ومونتير', place: 'Save in Gold، الإمارات' },
-      { years: '2025 – الآن', role: 'مصوّر فيديو وفوتوغرافي فري لانس', place: 'الإمارات' },
+      { years: '2025 – الآن', role: 'مصوّر فيديو وفوتوغرافي ومونتير', place: 'فري لانس، الإمارات' },
       { years: '2022 – 2024', role: 'مصوّر فيديو وفوتوغرافي', place: 'Layer Agency، مصر' },
       { years: '2022 – 2023', role: 'مصوّر فيديو وفوتوغرافي', place: 'Soul Media Production، مصر' },
-      { years: '2022', role: 'مصوّر الفنان بهاء سلطان', place: 'مصر' },
+      { years: '2022', role: 'مصوّر فوتوغرافي ومعدّل صور', place: 'بهاء سلطان، مصر' },
       { years: '2020 – 2024', role: 'مصوّر فيديو وفوتوغرافي', place: 'Udjat Agency، مصر والإمارات' },
       { years: '2016 – 2021', role: 'مصوّر فيديو وفوتوغرافي ومعدّل صور', place: 'Wedding Studio، مصر' },
       { years: '2013 – 2017', role: 'مصوّر فوتوغرافي ومعدّل صور', place: 'Brightery Agency، مصر' },
@@ -171,7 +172,7 @@ export const ui: Record<Lang, Strings> = {
     languagesTitle: 'اللغات', languages: 'العربية (لغة أم) · الإنجليزية (جيد جداً)',
     portraitNote: 'الصورة الشخصية قريباً',
     cats: { events: 'إيفنتات', conferences: 'مؤتمرات', concerts: 'حفلات', medical: 'طبي', products: 'منتجات', weddings: 'أفراح', parties: 'حفلات خاصة', places: 'أماكن', food: 'مطاعم' }, realEstate: 'عقارات', soon: 'قريباً',
-    filmTypes: { drone: 'درون', event: 'إيفنت', brand: 'براند', podcast: 'بودكاست' },
+    filmTypes: { events: 'إيفنتات', medical: 'طبي', products: 'منتجات', places: 'أماكن', restaurant: 'مطاعم', social: 'سوشيال ميديا', podcast: 'بودكاست', drone: 'درون' },
     watch: 'شاهد', openDrive: 'افتح على جوجل درايف ↗', prev: 'السابق', next: 'التالي',
     footerLine: 'فيديو · تصوير فوتوغرافي · مونتاج', rights: 'جميع الحقوق محفوظة.',
     notFoundTitle: 'خارج الكادر', notFoundText: 'الصفحة دي مش موجودة، بس الشغل لسه هنا.', backHome: 'ارجع للرئيسية',

@@ -128,7 +128,7 @@ filters?.addEventListener('click', (e) => {
   if (!chip) return;
   const cat = chip.dataset.cat;
   $$('[data-cat]', filters).forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
-  $$('.still').forEach((f) => f.toggleAttribute('hidden', !(cat === 'all' || f.dataset.cat === cat)));
+  $$('[data-filter-item]').forEach((f) => f.toggleAttribute('hidden', !(cat === 'all' || f.dataset.cat === cat)));
   if (!reduce) ScrollTrigger.refresh();
 });
 

@@ -72,10 +72,10 @@ export const photos: Photo[] = [
 
 // Concert photos used for the "On stage with" cards.
 export const onStage = [
-  { artist: 'Tamer Hosny', id: '1dx9jdq-5VF4y_MZNCjjv21pjgD_9Mc4t' },
+  { artist: 'Tamer Hosny', id: '1VTgiHaZ9wmjrPxdnTBKx4PgAiHjTItru' },
+  { artist: 'Ramy Sabry', id: '17jNxB3B231-UDOU1P_7yldC1gMZ3U6ib' },
   { artist: 'Tamer Ashour', id: '1yTTzeFFz9Kb_UJGSQlxOIDNx52MEqa4V' },
-  { artist: 'Bahaa Sultan', id: '1Nabq3gDTFtVC5l4g60vt8LV6H6DDai8e' },
-];
+]
 
 export const img = (id: string, w: number) => `https://lh3.googleusercontent.com/d/${id}=w${w}`;
 export const thumb = (id: string, w: number) => `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`;

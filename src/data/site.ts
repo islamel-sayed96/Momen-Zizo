@@ -29,11 +29,21 @@ export const artists = [
   'Ramy Gamal', 'Moustafa Hagag', 'Mahmoud El Esseily', 'Ahmed Sheba', 'Omar Kamal',
 ];
 
-// Brands, agencies and events from his CV and Drive portfolio.
-export const clients = [
-  'Save in Gold', 'ADNOC', 'BIG 5', 'Dubai Derma', 'Jewellery & Bride Arabia',
-  'Al Alamein Drama Festival', 'Arab Academy', 'Udjat Agency', 'Layer Agency',
-  'Soul Media Production', 'Brightery', 'Wedding Studio',
+// Brands and events Momen has worked with (his list).
+export const brands = [
+  'Save In Gold', 'MenaCapital', 'ADNOC', 'Tarrad Development', 'ZEN Clinic', 'Solitaire Medical Center',
+  'Karizma Clinic', 'BBlash Clinic', 'A Plus Clinic', 'Begad Hospital', 'Merz Aesthetics', 'Teoxane',
+  'Boba Spot', 'Summit Gym', 'Cocomelon', 'Spacetoon', 'Tigris Gold', 'INZO', 'Chaihona', 'Mango Talaat',
+  'La Pergola', 'Tableya Restaurant', 'Colizuem', 'Khaleej Times', 'Al Etihad News', 'Emarat Alyoum',
+  'Alexandria University', 'Arab Academy', 'Multi Solution', 'UAE Flowers', 'Marseilia Beach',
+  'Zaher Super Market', 'Kenan Restaurant', 'Rokn El Sultan Restaurant', 'Omaya Ice Cream',
+  "Wallen's Caffe", 'Space Caffe', '1961 Caffe', 'Udjat Agency', 'Layer Agency', 'Brightery Agency',
+  'Soul Media Production', 'Wedding Studio',
+];
+
+export const events = [
+  'Big 5', 'Forex Expo', 'IFX Expo', 'One Billion', 'Jewellery & Bride Arabia', 'Dubai Derma', 'AMWC',
+  'Entree Ramadan Tent', 'Al Alamein Festival', 'EMA',
 ];
 
 export const socials = [
