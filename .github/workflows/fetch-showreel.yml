@@ -1,0 +1,47 @@
+name: Fetch showreel from Drive
+
+# Downloads the intro video from Google Drive into public/, makes a poster frame,
+# rebuilds the site and commits everything. Run it again whenever the intro changes.
+on:
+  workflow_dispatch:
+    inputs:
+      file_id:
+        description: Google Drive file id of the intro video (shared as "Anyone with the link")
+        required: true
+        default: 1JiSH8ET_x67CykhBQQPOkutpCNaPq9nH
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install ffmpeg
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - name: Download from Drive
+        env:
+          FILE_ID: ${{ inputs.file_id }}
+        run: |
+          curl -fsSL "https://drive.usercontent.google.com/download?id=${FILE_ID}&export=download&confirm=t" -o raw.mp4
+          file raw.mp4
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of compact raw.mp4
+      - name: Prepare for the web
+        run: |
+          # Move the index to the front so playback starts before the whole file arrives.
+          ffmpeg -y -i raw.mp4 -c copy -movflags +faststart public/showreel.mp4
+          ffmpeg -y -ss 0.3 -i public/showreel.mp4 -frames:v 1 -vf "scale='min(1600,iw)':-2" -q:v 3 public/showreel-poster.jpg
+          ls -la public/showreel.mp4 public/showreel-poster.jpg
+      - run: npm ci
+      - run: npm run build
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/showreel.mp4 public/showreel-poster.jpg dist
+          git diff --cached --quiet || (git commit -m "Add intro showreel from Drive and rebuild" && git push)
