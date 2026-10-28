@@ -132,6 +132,34 @@ filters?.addEventListener('click', (e) => {
   if (!reduce) ScrollTrigger.refresh();
 });
 
+/* ---------- Hero showreel ---------- */
+function playInline(a: HTMLElement) {
+  if (a.classList.contains('playing')) return;
+  const fr = document.createElement('iframe');
+  fr.src = `https://drive.google.com/file/d/${a.dataset.video}/preview?autoplay=1`;
+  fr.allow = 'autoplay; fullscreen; picture-in-picture';
+  fr.allowFullscreen = true;
+  fr.title = a.dataset.title ?? 'Showreel';
+  a.classList.add('playing');
+  a.removeAttribute('data-cursor');
+  $('.cursor')?.classList.remove('on');
+  a.append(fr);
+}
+// Load the Drive player straight away so the intro is ready the moment the page opens.
+const autoReel = $('[data-autoplay]');
+if (autoReel) playInline(autoReel);
+
+// Self-hosted reel: muted autoplay, holds on the logo frame at the end mark.
+const nativeReel = $('[data-reel-native]');
+if (nativeReel) {
+  const v = $<HTMLVideoElement>('video', nativeReel)!;
+  const end = Number(nativeReel.dataset.end || 0);
+  if (end) v.addEventListener('timeupdate', () => { if (v.currentTime >= end) { v.pause(); v.currentTime = end; } });
+  v.play().catch(() => {});
+  const snd = $<HTMLButtonElement>('[data-reel-sound]', nativeReel);
+  snd?.addEventListener('click', () => { v.muted = !v.muted; snd.textContent = v.muted ? '🔇' : '🔊'; if (v.paused && v.currentTime < end) v.play(); });
+}
+
 /* ---------- Video player ---------- */
 const vp = $<HTMLDialogElement>('#player')!;
 document.addEventListener('click', (e) => {
@@ -141,16 +169,7 @@ document.addEventListener('click', (e) => {
   const id = a.dataset.video!;
   // The hero reel plays in place instead of opening the full-screen player.
   if (a.hasAttribute('data-inline')) {
-    if (a.classList.contains('playing')) return;
-    const fr = document.createElement('iframe');
-    fr.src = `https://drive.google.com/file/d/${id}/preview`;
-    fr.allow = 'autoplay; fullscreen; picture-in-picture';
-    fr.allowFullscreen = true;
-    fr.title = a.dataset.title ?? 'Showreel';
-    a.classList.add('playing');
-    a.removeAttribute('data-cursor');
-    $('.cursor')?.classList.remove('on');
-    a.append(fr);
+    playInline(a);
     return;
   }
   $('[data-vp-title]', vp)!.textContent = a.dataset.title ?? '';

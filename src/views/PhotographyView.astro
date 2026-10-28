@@ -11,7 +11,7 @@ const t = ui[lang];
   <div class="wrap">
     <header class="page-head">
       <h1 class="page-title">{t.photoPageTitle}</h1>
-      <p>{t.photoPageLede}</p>
+      <p set:html={t.photoPageLede} />
     </header>
     <StillsGrid lang={lang} items={photos} filters />
     <div class="sec-foot"><a class="btn ghost" href={site.driveFolder} target="_blank" rel="noopener">{t.driveFolder} <span class="arrow">→</span></a></div>

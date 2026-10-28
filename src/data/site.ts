@@ -12,8 +12,9 @@ export const site = {
   phoneHref: '+971545358380',
   instagram: 'https://www.instagram.com/momenzizo.visuals/',
   behance: 'https://www.behance.net/momenzizo40',
+  behance2: 'https://www.behance.net/momenabdel-hady',
   linkedin: 'https://www.linkedin.com/in/momen-abd-elhady/',
-  whatsapp: 'https://wa.me/971545358380',
+  whatsapp: 'https://api.whatsapp.com/send?phone=971545358380',
   since: 2010,
   cv: drive('1dvg9OqHgFeIChXe6BQ6jzc0nPU2CjWjS'),
   portfolioPdf: drive('1mm3PneR84inU_Te4UNeLSpCPtxGoB_k-'),
@@ -38,12 +39,14 @@ export const clients = [
 export const socials = [
   { name: 'Instagram', handle: '@momenzizo.visuals', href: site.instagram },
   { name: 'Behance', handle: 'momenzizo40', href: site.behance },
+  { name: 'Behance', handle: 'momenabdel-hady', href: site.behance2 },
   { name: 'LinkedIn', handle: 'momen-abd-elhady', href: site.linkedin },
 ];
 
 export const equipment = [
   'Camera Sony A7 IV',
   'Sony 24-70 GM 2',
+  'Sony 70-200 GM 2',
   'DJI Gimbal',
   'DJI Drone',
   'DJI Microphone',

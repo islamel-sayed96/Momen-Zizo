@@ -139,15 +139,15 @@ const jsonLd = {
   <footer class="site-footer">
     <div class="wrap footer-top">
       <nav class="footer-social" aria-label={t.socialTitle}>
-        {socials.map((so) => <a href={so.href} target="_blank" rel="noopener me" aria-label={so.name} title={so.name}><SocialIcon name={so.name} size={20} /></a>)}
+        {socials.map((so) => <a href={so.href} target="_blank" rel="noopener me" aria-label={`${so.name} (${so.handle})`} title={`${so.name} · ${so.handle}`}><SocialIcon name={so.name} size={20} /></a>)}
       </nav>
-      <div class="footer-contact">
-        <a href={`tel:${site.phoneHref}`} dir="ltr">{site.phone}</a>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
+      <div class="footer-social footer-contact">
+        <a href={`mailto:${site.email}`} aria-label={`Email ${site.email}`} title={site.email}><SocialIcon name="Email" size={20} /></a>
+        <a href={site.whatsapp} target="_blank" rel="noopener" aria-label={`WhatsApp ${site.phone}`} title={`WhatsApp ${site.phone}`}><SocialIcon name="WhatsApp" size={20} /></a>
       </div>
     </div>
     <div class="wrap footer-bottom">
-      <span class="mono">© {new Date().getFullYear()} MOMEN ABD ELHADY · VIDEOGRAPHY · PHOTOGRAPHY · EDITING</span>
+      <span class="mono">© {new Date().getFullYear()} MOMEN ABD ELHADY · VIDEOGRAPHY · PHOTOGRAPHY · DRONE · EDITING</span>
       <span class="mono powered">Powered by <a href="https://islamshawqi.com" target="_blank" rel="noopener">Islam Shawqi</a></span>
     </div>
   </footer>

@@ -11,7 +11,7 @@ const items = films.filter((f) => f.type !== 'drone');
   <div class="wrap">
     <header class="page-head">
       <h1 class="page-title">{t.filmPageTitle}</h1>
-      <p>{t.filmPageLede}</p>
+      <p set:html={t.filmPageLede} />
     </header>
     <FilmGrid lang={lang} items={items} featured />
     <div class="sec-foot"><a class="btn" href={path(lang, 'drone')}>{t.nav.drone} <span class="arrow">→</span></a></div>

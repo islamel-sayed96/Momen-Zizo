@@ -8,14 +8,15 @@ const t = ui[lang];
 <section class="section contact wrap" id="contact" aria-labelledby="contact-h">
   <h2 class="big-cta" id="contact-h" data-reveal>{t.contactTitle[0]}<br /><em>{t.contactTitle[1]}</em></h2>
   <p class="contact-lede">{t.contactLede}</p>
+  <h3 class="social-title mono">{t.contactUs}</h3>
   <div class="channels">
     <div class="channel"><span class="mono">{t.email}</span><a class="val" href={`mailto:${site.email}`} data-copy-src>{site.email}</a><button class="copy" type="button" data-copy={site.email} data-done={t.copied}>{t.copy}</button></div>
-    <div class="channel"><span class="mono">{t.whatsapp}</span><a class="val" href={site.whatsapp} target="_blank" rel="noopener">{site.phone}</a><button class="copy" type="button" data-copy={site.phone} data-done={t.copied}>{t.copy}</button></div>
+    <div class="channel"><span class="mono">{t.call}</span><a class="val" href={`tel:${site.phoneHref}`}>{site.phone}</a><button class="copy" type="button" data-copy={site.phone} data-done={t.copied}>{t.copy}</button></div>
   </div>
   <h3 class="social-title mono">{t.socialTitle}</h3>
   <div class="socials">
     {socials.map((so) => (
-      <a class="social" href={so.href} target="_blank" rel="noopener me" aria-label={so.name} title={so.name}>
+      <a class="social" href={so.href} target="_blank" rel="noopener me" aria-label={`${so.name} (${so.handle})`} title={`${so.name} · ${so.handle}`}>
         <SocialIcon name={so.name} size={26} />
       </a>
     ))}

@@ -14,6 +14,7 @@ const caption = (p: Photo) => p.label ?? t.cats[p.cat];
     {used.map((c) => (
       <button class="chip" type="button" aria-pressed="false" data-cat={c}>{t.cats[c]}<sup>{items.filter((p) => p.cat === c).length}</sup></button>
     ))}
+    <button class="chip" type="button" disabled aria-disabled="true">{t.realEstate} <span class="soon">({t.soon})</span></button>
   </div>
 )}
 <div class="sheet" data-sheet>
