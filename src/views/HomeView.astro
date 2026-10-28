@@ -26,7 +26,7 @@ const brandsB = clients.slice(6);
 const [first, last] = lang === 'ar' ? ['مؤمن', 'عبد الهادي'] : ['Momen', 'Abd ElHady'];
 ---
 <Base lang={lang} page="" title={t.meta.home.title} description={t.meta.home.description}>
-  <link slot="head" rel="preload" as="image" href={poster(showreel.id, 1600)} fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href={localReel ? asset('showreel-poster.jpg') : poster(showreel.id, 1600)} fetchpriority="high" />
 
   <section class="hero wrap" aria-labelledby="hero-h">
     <div>
@@ -48,7 +48,10 @@ const [first, last] = lang === 'ar' ? ['مؤمن', 'عبد الهادي'] : ['Mo
     <div data-hero-reel>
       {localReel ? (
       <div class="reel playing-native" data-reel-native data-end={REEL_END}>
-        <video src={asset('showreel.mp4')} poster={asset('showreel-poster.jpg')} autoplay muted playsinline preload="auto" aria-label={t.reelLabel}></video>
+        <video poster={asset('showreel-poster.jpg')} autoplay muted playsinline preload="auto" aria-label={t.reelLabel}>
+          <source src={asset('showreel.webm')} type="video/webm" />
+          <source src={asset('showreel.mp4')} type="video/mp4" />
+        </video>
         <button class="reel-sound" type="button" data-reel-sound aria-label="Sound on">🔇</button>
       </div>
       ) : (

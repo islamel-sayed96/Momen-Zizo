@@ -33,15 +33,16 @@ jobs:
           ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of compact raw.mp4
       - name: Prepare for the web
         run: |
-          # Move the index to the front so playback starts before the whole file arrives.
-          ffmpeg -y -i raw.mp4 -c copy -movflags +faststart public/showreel.mp4
-          ffmpeg -y -ss 0.3 -i public/showreel.mp4 -frames:v 1 -vf "scale='min(1600,iw)':-2" -q:v 3 public/showreel-poster.jpg
-          ls -la public/showreel.mp4 public/showreel-poster.jpg
+          # 1080p H.264 for every browser plus a smaller VP9 WebM; index at the front so playback starts early.
+          ffmpeg -y -i raw.mp4 -vf "scale='min(1920,iw)':-2" -c:v libx264 -profile:v high -level 4.1 -pix_fmt yuv420p -crf 21 -preset slow -c:a aac -b:a 128k -movflags +faststart public/showreel.mp4
+          ffmpeg -y -i raw.mp4 -vf "scale='min(1920,iw)':-2" -c:v libvpx-vp9 -crf 32 -b:v 0 -row-mt 1 -c:a libopus -b:a 96k public/showreel.webm
+          ffmpeg -y -ss 3 -i public/showreel.mp4 -frames:v 1 -vf "scale='min(1600,iw)':-2" -q:v 3 public/showreel-poster.jpg
+          ls -la public/showreel.mp4 public/showreel.webm public/showreel-poster.jpg
       - run: npm ci
       - run: npm run build
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/showreel.mp4 public/showreel-poster.jpg dist
+          git add public/showreel.mp4 public/showreel.webm public/showreel-poster.jpg dist
           git diff --cached --quiet || (git commit -m "Add intro showreel from Drive and rebuild" && git push)
