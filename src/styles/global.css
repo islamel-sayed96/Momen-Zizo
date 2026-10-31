@@ -360,3 +360,10 @@ dialog::backdrop { background: var(--scrim); }
 .brands-track.events { animation-duration: 40s; }
 .brands-track { animation-duration: 120s; }
 .brands-track.reverse { animation-duration: 130s; }
+
+/* ---------- Floating WhatsApp ---------- */
+.wa-float { position: fixed; z-index: 60; inset-inline-end: clamp(16px, 3vw, 32px); bottom: calc(clamp(16px, 3vw, 32px) + env(safe-area-inset-bottom, 0px)); width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); box-shadow: 0 0 0 0 rgb(224 166 78 / .6), 0 10px 30px rgb(0 0 0 / .35); animation: wa-glow 2.2s ease-out infinite, wa-bob 3.6s ease-in-out infinite; transition: transform .25s var(--ease); }
+.wa-float:hover { transform: scale(1.08); animation-play-state: paused; }
+@keyframes wa-glow { 0% { box-shadow: 0 0 0 0 rgb(224 166 78 / .55), 0 10px 30px rgb(0 0 0 / .35); } 70% { box-shadow: 0 0 0 18px rgb(224 166 78 / 0), 0 10px 30px rgb(0 0 0 / .35); } 100% { box-shadow: 0 0 0 0 rgb(224 166 78 / 0), 0 10px 30px rgb(0 0 0 / .35); } }
+@keyframes wa-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+@media (max-width: 600px) { .wa-float { width: 56px; height: 56px; } }

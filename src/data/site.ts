@@ -19,6 +19,7 @@ export const site = {
   cv: drive('1dvg9OqHgFeIChXe6BQ6jzc0nPU2CjWjS'),
   portfolioPdf: drive('1mm3PneR84inU_Te4UNeLSpCPtxGoB_k-'),
   driveFolder: 'https://drive.google.com/drive/folders/1Kh3WAcyo-3jT2U-Hd2LFvgY7DyMBshLS',
+  videoFolder: 'https://drive.google.com/drive/folders/1dDSuY63z8R8K0A196LuMNio66smIKInt',
 };
 
 export const yearsActive = new Date().getFullYear() - site.since;
@@ -43,7 +44,7 @@ export const brands = [
 
 export const events = [
   'Big 5', 'Forex Expo', 'IFX Expo', 'One Billion', 'Jewellery & Bride Arabia', 'Dubai Derma', 'AMWC',
-  'Entree Ramadan Tent', 'Al Alamein Festival', 'EMA',
+  'Entree Ramadan Tent', 'Al Alamein Festival', 'EMA', 'MEIDAM', 'FILLMED', 'BONITTO', 'Saudi Exports',
 ];
 
 export const socials = [
