@@ -20,6 +20,8 @@ export const site = {
   portfolioPdf: drive('1mm3PneR84inU_Te4UNeLSpCPtxGoB_k-'),
   driveFolder: 'https://drive.google.com/drive/folders/1Kh3WAcyo-3jT2U-Hd2LFvgY7DyMBshLS',
   videoFolder: 'https://drive.google.com/drive/folders/1dDSuY63z8R8K0A196LuMNio66smIKInt',
+  photoFolder: 'https://drive.google.com/drive/folders/1XXuJ0IDkRa0AZOik5zxNIzsX7mzQ7gKo',
+  droneFolder: 'https://drive.google.com/drive/folders/1H2rkL_GAqDP_rDwzBGQGkwiw1J-N59qW',
 };
 
 export const yearsActive = new Date().getFullYear() - site.since;
