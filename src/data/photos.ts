@@ -44,7 +44,6 @@ export const photos: Photo[] = [
   { id: '169THNy6DoNzRdxe-A77sExS0xD-5wq9c', cat: 'events' },
   { id: '12YjjghdYlyBwdtXDelISSXbTzVxEuJD7', cat: 'conferences', label: 'ADNOC' },
   { id: '1CgC_pINg6HeHyYgVQziiU-7t_A70Sb0c', cat: 'conferences', label: 'ADNOC' },
-  { id: '1W82fDob0xV3U7Rt8DDURE6SlK-0LiugA', cat: 'conferences', label: 'Dubai Derma' },
   { id: '1CoZNMgma3It_5OcZcDoJOYQdj-R20QNh', cat: 'conferences', featured: true },
   { id: '1PEuyG9CIIfpIekCAgf4IOSC8ahRxb8AD', cat: 'conferences' },
   { id: '1qH7vxQb5EpKtWGai7or4P8lYzGBYNIpV', cat: 'conferences' },
